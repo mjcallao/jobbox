@@ -1,0 +1,25 @@
+{
+  "name": "trabajosya",
+  "description": "busqueda de trabajo",
+  "main": "app.js",
+  "authors": [
+    "EMILIANOinsfran"
+  ],
+  "license": "ISC",
+  "homepage": "trabajoYA",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "framework7": "^1.6.4",
+    "angular": "angularjs#^1.6.6",
+    "less": "^2.7.2",
+    "angular-route": "^1.6.6",
+    "angular-ui-router": "^1.0.6"
+  }
+}
