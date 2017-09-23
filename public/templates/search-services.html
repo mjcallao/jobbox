@@ -1,28 +1,53 @@
 <div class="statusbar-overlay"></div>
 <div class="panel-overlay"></div>
-<div class="panel panel-left panel-cover  search-services ">
+<div class="panel panel-left panel-cover  search-services " ng-controller="searchServicesCtrl">
     <div class="view navbar-fixed">
         <div class="pages ">
+
+           <div class="navbar animated flipInX background-header" style="animation-delay: 1s">
+                <div class="navbar-inner">
+                    <h3 >Buscar Servicios</h3>
+                </div>
+            </div>
             <div data-page="panel-left" class="page">
                 <div class="page-content body-color-text content">
-                    <h2>Buscar Servicios</h2>
-                    <!--<a ng-click="gotoPage('home')">close me</a>-->
-                     <div class="geolocation">
-                        <span>Utilizar mi posición actual</span> 
-                        <input  type="checkbox" class='toggle'   id="geolocation" name='check-4' />    
-                    </div>           
-                    <div class="list-block">
-                        <ul>
-                        <li ng-click="gotoPage('profile')">
-                            <div class="item-content">
-                            <div class="item-media"><i class="icon icon-f7"></i></div>
-                            <div class="item-inner">
-                            <div class="item-title">Perfil</div>
+                    <form>
+                        <!--<a ng-click="gotoPage('home')">close me</a>-->
+                        <div class="geolocation">
+                            <span>Utilizar mi posición actual</span> 
+                            <input  type="checkbox" class='toggle'   id="geolocation" name='check-4' />    
+                        </div> 
+                        <div class=" content-services-menu">
+                            <div class="page">
+                                <div class="page-content categories">
+                                    <div ng-include src="'templates/services/job.html'" ></div>
+                                </div>
                             </div>
+                        </div>
+                        <div class="search-advanced">
+                            <h3>Busqueda Avanzada</h3>
+                            <select  ng-model="searchUser.provinces"  name="provinces"ng-required="true" >
+                                <option   ng-repeat="provinces in provinces" ng-value="provinces">{{provinces[1]}}</option>
+                            </select>
+                            <select   name="locality" ng-required="true">
+                                <option ng-repeat="localidad in localidad" ng-if="localidad[1] == searchUser.provinces[0]  " value="{{localidad[2]}}">{{localidad[2]}}</option>
+                            </select>
+                        </div>
+
+                    </form>   
+                    <h3 ng-click="onClick_ShowRecord()">Ver historial</h3>
+                    <div class="record animated bounce" ng-repeat="record in history" ng-if="showRecord == true">
+
+                        <div class="row">
+                            <div class="col-50">
+                                <h3>{{record.service}}</h3>
                             </div>
-                        </li>
-                        </ul>
-                    </div>
+                            <div class="col-50">
+                                <h4>{{record.provinces}}</h4>
+                                <h4>{{record.locality}}</h4>
+                            </div>
+                        </div>
+                    </div>       
                 </div>
             </div>
         </div>

@@ -2,16 +2,7 @@
   <div  class="page-content" >
     <div class="animated fadeInUp">
       <h1>Oficios</h1>
-      <label class="search"><input ng-model="searchText" placeholder="Buscar Oficio"></label>
-        <ul style="height: 100%;position: relative;">
-          <div ng-repeat="categories in categories  | filter:searchText  as results" class="noBreak " > 
-            <li>
-              <div class=" container-image image urlImageUser animated rubberBand" ng-class="{noDelay:categories[1],noDelay: categories[1] == false,urlImageValidUser:categories[1],urlImageUser: categories[1] == false,flip :categories[1],flash: categories[1] == false}"></div>
-              {{categories[0]}}
-            </li>
-            <input  type="checkbox" class='toggle'  ng-model="categories[1]" id="{{categories[0]}}" name='check-4' ng-click="addCategories(categories[0])"/>
-          </div>
-        </ul>
+          <div ng-include src="'templates/services/job.html'" ></div>
     </div>
   </div>
 </div>

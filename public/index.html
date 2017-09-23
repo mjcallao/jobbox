@@ -57,10 +57,15 @@
                             templateUrl: "templates/categories.html",
                             controller: 'registrationCtrl'
                         })
-                        .state('searchCategories', {
-                            url: "/searchCategories",
+                        .state('result-categories', {
+                            url: "/result-categories",
                             templateUrl: "templates/home-services.html",
                             controller: 'homeCtrl'
+                        }) 
+                        .state('search-categories', {
+                            url: "/search-categories",
+                            templateUrl: "templates/search-services.html",
+                            controller: 'searchServicesCtrl'
                         }) 
                         .state('profile', {
                             url: "/profile",
@@ -95,7 +100,8 @@
 
       <!--js-->
       <script type="text/javascript" src="src/main-ctr.js"></script>
-      <script type="text/javascript" src="src/home-ctr.js"></script>
+      <script type="text/javascript" src="src/home-services-ctr.js"></script>
+      <script type="text/javascript" src="src/search-services-ctr.js"></script>
       <script type="text/javascript" src="src/login-ctr.js"></script>
       <script type="text/javascript" src="src/profile-ctr.js"></script>
       <script type="text/javascript" src="src/registration-ctr.js"></script>
