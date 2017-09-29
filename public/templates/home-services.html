@@ -10,7 +10,7 @@
       </div>
 
       <div class="page-content ">
-          <div class="user-letter-container animated flipInY" style="animation-delay: {{$index}}s" ng-repeat="user in user" >
+          <div class="user-letter-container animated flipInY" style="animation-delay: {{$index}}s" ng-repeat="user in user" ng-if="resultUser == 'messegeIntroSearchUser'">
            
               <div class="row">
                     <div class="col-75" ng-click="gotoProfileUser(user)">
@@ -39,7 +39,15 @@
                     <div class="message-comment"></div>
                   </div>
               </div>
-              <div class="commentary">Ver comentarios</div>
+              <div class="commentary">tiene 8 comentarios</div>
+        </div>
+        <div class="content-messegeUser animated fadeInLeft" ng-if="resultUser == 'null'">
+            <p class="center-p">Bienvenido a la Busqueda de servicios de TrabajoYa!!</p>
+            <p class="center-p">Sigue estos simples pasos y encuentra a trabajadores que solucionenen tus problemas habituales del hogar</p>
+            <p>1 - Preciona en "Buscar Servicios" </p>
+            <p>2 - Cuando se habra el panel elige entre "Utilizar mi posición actual" o "Busqueda Avanzada" (seleccionando la provincia y localidad que prefieras)</p>
+            <p>3 - Selecciona un oficio</p>
+            <p>4 - Por último presiona en "Buscar servicio"</p>
         </div>
       </div>
     </div>
