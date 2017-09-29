@@ -21,7 +21,12 @@ input:-webkit-autofill {
 h1,h2,h3,h4,h5,p,span{
     font-family: Raleway !important;
 }
-
+.content{
+    max-width: 320px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
 @whiteLight: #fafafa;
 input[type='checkbox']{
  &.toggle{
@@ -92,6 +97,10 @@ form{
     input.ng-invalid.ng-touched {
         background-color: rgba(253, 123, 129, 0.85);
         color:white;
+    }
+    input.ng-valid{
+        background-color:white;
+        color:black;   
     }
 
     .message-error{

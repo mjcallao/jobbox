@@ -1,17 +1,20 @@
-angular.module('main').controller("homeCtrl",[ "$scope", function($scope){
+angular.module('main').controller("homeCtrl",[ "$scope","$rootScope","$location", function($scope,$rootScope,$location){
     $scope.nombre = "miApp";
-    var jobBox = new Framework7({
-      pushState: true,
-      swipePanel: 'left',
-      material:true
-    });
-    var mainView2 = jobBox.addView('.view-main', {
-        dynamicNavbar: true
-    });
+    // var jobBox = new Framework7({
+    //   pushState: true,
+    //   swipePanel: 'left',
+    //   material:true
+    // });
+    // var mainView2 = jobBox.addView('.view-main', {
+    //     dynamicNavbar: true
+    // });
     // var $$ = Dom7;
     // jobBox.smartSelectAddOption('.smart-select select', '<option value="apple">Apple</option>');
 
-
+    $scope.gotoProfileUser = function(user){
+       $rootScope.userSearch= user;
+       $location.path( "/profile" );
+    }
     $scope.user = [
         {
             _id:222222222,
@@ -25,6 +28,8 @@ angular.module('main').controller("homeCtrl",[ "$scope", function($scope){
                     name:"Electricista",
                     province: "GRAN Buenos Aires",
                     locality:"Ezeiza",
+                    tel:43641234,
+                    cel:1124112845,
                     score:100,
                     comment:[
                         {

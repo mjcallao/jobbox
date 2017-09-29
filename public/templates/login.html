@@ -5,25 +5,25 @@
       <form name="formLogin" ng-submit="login()" novalidate>
 
         <h3><label for="nameUser">Email</label></h3>
-        <input type="email"  class="email" id="email" ng-model="userLogin.email"  name="email" placeholder="email" ng-required="true">
+        <input type="email"  class="email" id="email" ng-model="userLogin.email"  name="email" placeholder="email" ng-required="true" ng-pattern="validationEmail">
       
         <h3><label for="nameUser">Contraseña</label></h3>
         <input type="password"  class="nameUser" id="nameUser" ng-model="userLogin.password" name="password" placeholder="Contraseña" ng-required="true">
-        <div>
-
-        <div class="message-error animated pulse" ng-show=" formLogin.$invalid &&  formLogin.$submitted">
-          <span  class="animated pulse" ng-show="formLogin.categories.$error.required || formLogin.email.$error.required || formLogin.password.$error.required">Todos los campos son Obligatorios</span><br>
-          <span  class="animated pulse" ng-show="formLogin.email.$error.email">Email Inválido</span>
-        </div>
-       </div>
-        <div class="container-btn">
-          <!--<div ng-click="login()" class="button button-fill color-white">ENTRAR</div>-->
-          <button type="submit" class="button button-fill color-white">ENTRAR</button>
-
-          <div  ui-sref="menu" class="button button-fill color-white"> Entrar con Facebook </div>
         
-          <div ui-sref="menu" class="button button-fill color-white">Modo Visitante</div>
-        </div>
+
+          <div class="message-error animated pulse" ng-show=" formLogin.$invalid &&  formLogin.$submitted">
+            <span  class="animated pulse" ng-show="formLogin.email.$error.required || formLogin.password.$error.required">Todos los campos son Obligatorios</span><br>
+            <span  class="animated pulse" ng-show="formLogin.email.$error.email || formLogin.email.$error.pattern">Email Inválido</span>
+          </div>
+      
+          <div class="container-btn">
+            <!--<div ng-click="login()" class="button button-fill color-white">ENTRAR</div>-->
+            <button type="submit" class="button button-fill color-white">ENTRAR</button>
+
+            <div  ui-sref="menu" class="button button-fill color-white"> Entrar con Facebook </div>
+          
+            <div ui-sref="menu" class="button button-fill color-white" ng-click="userVisitor()">Modo Visitante</div>
+          </div>
         
       </form>
 

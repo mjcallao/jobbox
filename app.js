@@ -18,17 +18,14 @@ var mongoose = require('mongoose');
 	// app.use(app.router);
 
 
-<<<<<<< HEAD
+
 // Configuración Puerto de escucha AIzaSyC7u-5CW2F-ie8JWnnAvWG4xMNp_2liCcI
 
 var app = express();
 
 app.use(express.static("public"));
 
-=======
-// Configuración Puerto de escucha
-app.use(express.static("public"));
->>>>>>> 35ba21ccb657378933682a4210098716efea9805
+
 app.set("port",(process.env.PORT || 5600));
 app.listen(app.get("port"),()=>{
     console.log("puerto: ",app.get("port"))

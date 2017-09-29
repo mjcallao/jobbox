@@ -1,5 +1,5 @@
 angular.module("main").controller("registrationCtrl",["$scope","$location","$rootScope",function($scope,$location,$rootScope){
-    
+    $scope.validationEmailRegistration ="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$"
     $scope.userRegistration={
         name:"",
         lastName:"",

@@ -7,11 +7,12 @@
             
                 <button  ui-sref="result-categories" class="button button-fill color-white animated bounceInLeft" style="animation-delay: 0.3s">Buscar Oficios</button>
                 
-                <div  ui-sref="singup-employee" class="button button-fill color-white  animated bounceInLeft" style="animation-delay: 0.6s"> Registrar mis servicios </div>
+                <div  ui-sref="singup-employee" ng-disabled="userStateVisit" class="button button-fill color-white  animated bounceInLeft" style="animation-delay: 0.6s"> Registrar mis servicios </div>
 
-                <div ui-sref="" class="button button-fill color-white animated bounceInLeft" style="animation-delay: 0.9s">Publicar Herramientas</div>
-                <div ui-sref="" class="button button-fill color-white animated bounceInLeft" style="animation-delay: 1.2s">Alquilar Herramientas</div>
-                <div ui-sref="profile" class="button button-fill color-white animated bounceInLeft" style="animation-delay: 1.5s">Mi Perfil</div>
+                <div ui-sref="" ng-disabled="true"  class="button button-fill color-white animated bounceInLeft" style="animation-delay: 0.9s">Publicar Herramientas</div>
+                <div ui-sref="" ng-disabled="true" class="button button-fill color-white animated bounceInLeft" style="animation-delay: 1.2s">Alquilar Herramientas</div>
+                <div ui-sref="profile" ng-disabled="userStateVisit" class="button button-fill color-white animated bounceInLeft" style="animation-delay: 1.5s">Mi Perfil</div>
+                <p  ui-sref="login" class="login p  animated bounceInLeft" style="animation-delay: 1.9s">SALIR</p>
             </div>
 
         </form>
