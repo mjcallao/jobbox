@@ -41,7 +41,8 @@
             var jobbox = angular.module("main",['ui.router']);
             jobbox.config(function($stateProvider, $urlRouterProvider) {
 
-                    $urlRouterProvider.otherwise("/login");
+                    /*cambiado el mail para que vaya a la pagina de herramientas de una*/
+                    $urlRouterProvider.otherwise("/tools");
 
                     $stateProvider
                         .state('login', {
@@ -83,6 +84,12 @@
                             templateUrl: "templates/singup-employee.html",
                             controller:'singUpEmployeeCtrl'
                         }) 
+                        .state('tools', {
+                            url: "/tools",
+                            templateUrl: "templates/tools.html",
+                            controller:'toolsCtrl'
+                        }) 
+
 
                 });
 
@@ -108,6 +115,7 @@
       <script type="text/javascript" src="src/profile-ctr.js"></script>
       <script type="text/javascript" src="src/registration-ctr.js"></script>
       <script type="text/javascript" src="src/singup-employee-ctr.js"></script>
+      <script type="text/javascript" src="src/tools-ctr.js"></script>
       <!--git push -u origin master-->
    </body> 
 </html>
