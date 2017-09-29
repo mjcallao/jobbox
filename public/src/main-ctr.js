@@ -25,6 +25,89 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
     }
 
 
+    /*$rootScope.tools=[
+
+    MHerramientas electricas:
+
+    Acanaladora de muros
+    Hoyadora
+    Mesa de corte de ceramica
+    Amoladora
+    Caloventor
+    Ingleteadora
+    Lijadora de banda
+    Lijadora orbital
+    Lijadora Rotorbital
+    Sierra caladora
+    Sierra circular
+    Sierra sable
+    Compresor
+    Cortadora sensitiva
+    Martillo demoledor hex
+    Martillo demoledor sds max
+    Martillo rompepavimento
+    Bomba de agua
+    Bomba sumergible 
+    Atornillador durlock
+    Grupos electrogenos
+    Aspiradora
+    Hidrolavadora
+    Lustralavadora
+    Lustralijadora
+    Rotomartillo
+    Taladro
+    Equipo para pintar
+    Pistola de calor
+    Destapadora
+    Roscadora
+    Termofusora
+    Soldadora
+    Pison
+    Plancha vibratoria
+    Accesorios elevacion
+    Aparejo manual
+    Guinche
+    Torre de elevacion
+    Alisador de pisos
+    Aserradora
+    Encofrado
+    Hormigonera
+    Regla vibratoria
+    Trituradora
+    Vibradores
+    Pulidora de mosaico
+    Pulidora de parquet
+    Cortacerco
+    Desmalezadora
+    Electrosierra
+    Motosierra
+    Pulverizador
+    Andamio colgante electrico
+    Andamio
+    Balancin 
+
+
+    Herramientas no electricas:
+
+    Caballete
+    Cinturon
+    Cortadora de ceramica
+    Cepillo de carpintero
+    Cortadora de hierro
+    Escalera
+    Pistola para pintar
+    Banco para gasista
+    Llave para caño
+    Terraja gasista
+    Carretilla
+    Carro
+    Zorra
+    Cortacerco
+    Mezcladora
+    
+    ]
+*/
+
 
     $rootScope.categories =  
      [ 
