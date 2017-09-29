@@ -1,4 +1,4 @@
-angular.module('main').controller("searchServicesCtrl",[ "$scope","$location", function($scope,$location){
+angular.module('main').controller("searchServicesCtrl",[ "$scope","$rootScope","$location", function($scope,$rootScope,$location){
     $scope.searchUser = {
         service : "",
         provinces: "",
@@ -15,6 +15,10 @@ angular.module('main').controller("searchServicesCtrl",[ "$scope","$location", f
     }]
     $scope.onClick_ShowRecord = function(){
         $scope.showRecord =true;
+    }
+    $rootScope.resultUser = "null"
+    $scope.onClick_SearchUser =function(){
+        $rootScope.resultUser ="messegeIntroSearchUser"
     }
 
 
