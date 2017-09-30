@@ -3,6 +3,40 @@
 
 
 angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($scope,$rootScope){
+
+
+    angular.element(document).ready(function(){ 
+        try{
+        console.log("Inicio de debug...")
+        
+        // Prueba que phonegap(cordova) este funcionando. Solo sirve en celular.
+        var isCordovaApp = !!window.cordova;
+        console.log(isCordovaApp)
+        
+        // La variable gps va a devolver True si esta prendido o False si esta apagado.
+        console.log("GPS: ");
+        cordova.plugins.diagnostic.isLocationEnabled(function (locationEnabled){
+          if (locationEnabled){
+            console.log(true);
+          }else{
+            console.log(false);
+          };
+          }, function(error){
+            console.log("error");
+        });
+
+        // La variable conexion va a devolver "none" si no esta conectado a internet. O va a devolver "unknown" si hubo algun error.
+        console.log("Conexion: ")
+        var conexion = navigator.connection.type;        
+        console.log(conexion);
+        }
+        
+        catch{
+
+        }
+        
+      })
+
     $scope.mains = "todo";
 
     var jobBox = new Framework7({

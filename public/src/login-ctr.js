@@ -5,6 +5,7 @@ angular.module('main').controller("loginCtrl",[ "$scope","$rootScope","$location
         email: "",
         password:""
     }
+
     $scope.userVisitor =function(){
         $rootScope.userStateVisit = true;
     }
@@ -17,6 +18,5 @@ angular.module('main').controller("loginCtrl",[ "$scope","$rootScope","$location
             $location.path( "/menu" );
         }else{
         }
-    }
-    
+    }    
 }]);
