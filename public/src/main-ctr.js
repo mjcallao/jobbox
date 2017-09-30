@@ -39,31 +39,16 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
         var onSuccess = function(position) {
           latitud = position.coords.latitude;
           longitud = position.coords.longitude;
-          orient = position.coords.heading;
-          if (orient == null){
-            orient = 0.0;
-          };
-          vel =  position.coords.speed;
-          if (vel == null){
-            vel = 0.0;
-          };
-          exact = position.coords.accuracy;
         };
 
-
-        // onError Callback receives a PositionError object
-        //
         function onError(error) {
           console.log(error);
         }
-
-
-        function llamarGPS(){
-            navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
-        }
-
-
         
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
+        
+
+                
       } )
 
     $scope.mains = "todo";
