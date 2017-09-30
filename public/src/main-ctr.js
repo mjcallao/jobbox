@@ -32,7 +32,7 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
         }
         
         catch{
-
+          console.log("error");
         }
         
       })
