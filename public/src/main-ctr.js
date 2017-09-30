@@ -30,9 +30,8 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
         var conexion = navigator.connection.type;        
         console.log(conexion);
         }
-        
-        catch{
-          console.log("error");
+        catch(err){
+          console.log(err);  
         }
         
       })
