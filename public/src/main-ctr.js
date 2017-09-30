@@ -69,6 +69,9 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
                 console.log(locCountryNameCount);
                 console.log(locCountryName);
         });
+
+
+        
             
         
 
