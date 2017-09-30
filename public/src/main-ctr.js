@@ -33,6 +33,20 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
         catch(err){
           console.log(err);  
         }
+
+        // Funcion obtener ubicacion
+
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
+
+        var onSuccess = function(position){
+        latitud = position.coords.latitude;
+        longitud = position.coords.longitude;
+        };
+
+        console.log(latitud);
+        console.log(longitud);
+
+
         
       })
 
