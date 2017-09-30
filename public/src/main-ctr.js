@@ -47,8 +47,12 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
           console.log(error);
         }
         
-        navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
 
+        function llamarGPS(){
+          navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
+        }
+
+        llamarGPS();
 
 
       } )
