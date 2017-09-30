@@ -39,6 +39,8 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
         var onSuccess = function(position) {
           latitud = position.coords.latitude;
           longitud = position.coords.longitude;
+          console.log(latitud);
+          console.log(longitud);
         };
 
         function onError(error) {
@@ -46,9 +48,9 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
         }
         
         navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
-        
 
-                
+
+
       } )
 
     $scope.mains = "todo";
