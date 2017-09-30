@@ -49,6 +49,7 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
         
 
         function llamarGPS(){
+          console.log("localizacion Entra");
           navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
         }
 
