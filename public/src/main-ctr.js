@@ -55,6 +55,23 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
 
         llamarGPS();
 
+        // Funcion para ver nombre de la ciudad segun coordenadas
+
+        var locCurrent = new google.maps.LatLng(latitud, longitud);
+
+        var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': locCurrent }, function (results, status) {
+                var locItemCount = results.length;
+                var locCountryNameCount = locItemCount - 1;
+                var locCountryName = results[locCountryNameCount].formatted_address;
+
+                console.log(locItemCount);
+                console.log(locCountryNameCount);
+                console.log(locCountryName);
+        });
+            
+        
+
 
       } )
 
