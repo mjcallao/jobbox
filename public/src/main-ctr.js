@@ -94,7 +94,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
             myApp = new Framework7();
             myApp.modal({
             title:  'Atencion!',
-            text: 'Se requiere conexion a internet para utilizar esta aplicacion',
+            text: 'Se requiere conexion a internet.',
             buttons: [
               {
                 text: 'Wifi',
@@ -122,9 +122,6 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
           }
         }
 
-        // ########## Abrir configuracion de GPS ##########
-
-        // ########## Abrir configuracion de internet y 3g ##########
 
 
         /*
