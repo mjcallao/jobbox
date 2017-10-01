@@ -55,20 +55,6 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
           console.log(localidad);
         }
 
-        // ########## Funcion para ver si el GPS esta prendido ##########
-       
-        function verEstadoGPS(){
-          // Tiene esta forma de Callback para que si devuelve false pueda tirar un dialogo avisando que tiene que ser prendido.
-          cordova.plugins.diagnostic.isLocationEnabled(function (locationEnabled){
-            if (locationEnabled){
-              console.log(true);
-            }else{
-              console.log(false);
-            };
-            }, function(error){
-              console.log("error");
-        });
-        }
 
         // ########## Funcion para ver si internet esta prendido ##########
 
@@ -88,8 +74,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
 
         // ########## PopUp Conexion ##########
 
-        function popUpConexion(){
-          console.log(verEstadoConexion());
+        function popUpConexion(){          
           if (!verEstadoConexion()) {
             myApp = new Framework7();
             myApp.modal({
@@ -122,17 +107,64 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
           }
         }
 
+        // ########## PopUp GPS ##########
+
+        function popUpGPS()
+        {
+          cordova.plugins.diagnostic.isLocationEnabled(function (locationEnabled)
+          {
+            if (locationEnabled)
+            {
+              null
+            }
+            else
+            {
+            myApp = new Framework7();
+            myApp.modal({
+            title:  'Atencion!',
+            text: 'Se requiere GPS activo.',
+            buttons: [
+              {
+                text: 'GPS',
+                bold: true,
+                onClick: function() {
+                  console.log(latitud);
+                  console.log(longitud);
+                  cordova.plugins.diagnostic.switchToLocationSettings()
+                }
+              },
+              {
+                text: 'Salir',
+                bold: true,
+                onClick: function() {
+                  null
+                }
+              },
+            ]
+            });
+            };
+          }, 
+          function(error)
+          {
+              console.log("error");
+          }
+          );
+        }
 
 
-        /*
-
+        
+        
+        // Llama al GPS, parsea la localidad y setea 2 variables globales provincia y localidad con el resultado
         llamarGPS();
-        console.log(verEstadoConexion());
-        verEstadoGPS();
+        
+        // Pregunta si tiene conexion y si no la tiene lanza el PopUp
+        // popUpConexion(); 
+        
+        // Pregunta si tiene GPS y si no tiene lanza el PopUp
+        popUpGPS();
 
-        */
+        
 
-        popUpConexion(); 
 
         });
      
