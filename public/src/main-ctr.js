@@ -56,7 +56,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
         // ### Funcion para ver si el GPS esta prendido ###
         
 
-        function preguntarGPS(){
+        /*function preguntarGPS(){
           cordova.plugins.diagnostic.isLocationEnabled(function(locationEnabled)
             {
               if (locationEnabled){
@@ -70,7 +70,20 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
               console.log(error);
             }
           )
-        };
+        };*/
+
+        function preguntarGPS(){
+          try{
+            if (cordova.plugins.diagnostic.isLocationEnabled()) {
+              return true;
+            }else{
+              return false;
+            }
+          }
+          catch (err){
+            console.log(err);
+          }
+        }
           
         console.log(preguntarGPS());
 
