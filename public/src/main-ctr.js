@@ -2,7 +2,95 @@
 // angular.module("main",["ui.router"]);
 
 
-angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($scope,$rootScope){
+angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", function($http,$scope,$rootScope){
+
+
+    angular.element(document).ready(function(){ 
+
+
+
+        // ### Conseguir Localidad y Provincia ###
+
+        // Se llama a la funcion llamarGPS()
+        // Si tiene exito: Almacena la latitud y la longitud en dos variables globales y las usa para llamar a la API. Se parsea el resultado y lo asigna a variables.
+        // Si no tiene exito: Entra al callback onError()
+
+        function llamarGPS(){
+          navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
+        }
+
+        var onSuccess = function(position) {
+          latitud = position.coords.latitude;
+          longitud = position.coords.longitude;
+          console.log(latitud);
+          console.log(longitud);
+          llamarApiGeo(latitud, longitud);
+        };
+
+        function onError(error) {
+          console.log(error);
+        }
+
+        // Le paso por parametro latitud y longitud
+        function llamarApiGeo(latitud,longitud){
+          try{
+          stringGeoCode = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitud+','+longitud+'&key=AIzaSyCimUfkmcHkggWlx2TwdZN2h367zBj0bVU';
+
+          $http.get(stringGeoCode).then(function(data) {    
+          jsonLocation = data;
+
+          // Aca parseo la informacion que devuelve el JSON y la asigno a estas dos variables.
+          provincia = jsonLocation.data.results[3].formatted_address.split(',')[0];
+          localidad = jsonLocation.data.results[2].formatted_address.split(',')[0];
+          console.log(provincia);
+          console.log(localidad);
+          });
+          }
+          catch(err){
+            console.log(err);
+          }
+        }
+
+        
+
+
+
+        // ### Funcion para ver si el GPS esta prendido ###
+       
+        function verEstadoGPS(){
+          // Tiene esta forma de Callback para que si devuelve false pueda tirar un dialogo avisando que tiene que ser prendido.
+          cordova.plugins.diagnostic.isLocationEnabled(function (locationEnabled){
+            if (locationEnabled){
+              console.log(true);
+            }else{
+              console.log(false);
+            };
+            }, function(error){
+              console.log("error");
+        });
+        }
+
+
+        // ### Funcion para ver que si internet esta prendido ###
+
+        function verEstadoConexion(){
+          // La variable conexion va a devolver "none" si no esta conectado a internet. O va a devolver "unknown" si hubo algun error.
+          var conexion = navigator.connection.type;
+          if (conexion == "none") 
+          {
+            return false;
+          }        
+        }
+        
+        llamarGPS();
+        console.log(verEstadoConexion());
+        verEstadoGPS();
+
+
+        });
+     
+     
+
     $scope.mains = "todo";
 
     var jobBox = new Framework7({
@@ -24,6 +112,89 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
        jobBox.closePanel();
     }
 
+
+    /*$rootScope.tools=[
+
+    MHerramientas electricas:
+
+    Acanaladora de muros
+    Hoyadora
+    Mesa de corte de ceramica
+    Amoladora
+    Caloventor
+    Ingleteadora
+    Lijadora de banda
+    Lijadora orbital
+    Lijadora Rotorbital
+    Sierra caladora
+    Sierra circular
+    Sierra sable
+    Compresor
+    Cortadora sensitiva
+    Martillo demoledor hex
+    Martillo demoledor sds max
+    Martillo rompepavimento
+    Bomba de agua
+    Bomba sumergible 
+    Atornillador durlock
+    Grupos electrogenos
+    Aspiradora
+    Hidrolavadora
+    Lustralavadora
+    Lustralijadora
+    Rotomartillo
+    Taladro
+    Equipo para pintar
+    Pistola de calor
+    Destapadora
+    Roscadora
+    Termofusora
+    Soldadora
+    Pison
+    Plancha vibratoria
+    Accesorios elevacion
+    Aparejo manual
+    Guinche
+    Torre de elevacion
+    Alisador de pisos
+    Aserradora
+    Encofrado
+    Hormigonera
+    Regla vibratoria
+    Trituradora
+    Vibradores
+    Pulidora de mosaico
+    Pulidora de parquet
+    Cortacerco
+    Desmalezadora
+    Electrosierra
+    Motosierra
+    Pulverizador
+    Andamio colgante electrico
+    Andamio
+    Balancin 
+
+
+    Herramientas no electricas:
+
+    Caballete
+    Cinturon
+    Cortadora de ceramica
+    Cepillo de carpintero
+    Cortadora de hierro
+    Escalera
+    Pistola para pintar
+    Banco para gasista
+    Llave para caño
+    Terraja gasista
+    Carretilla
+    Carro
+    Zorra
+    Cortacerco
+    Mezcladora
+    
+    ]
+*/
 
 
     $rootScope.categories =  
