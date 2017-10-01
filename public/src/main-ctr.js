@@ -90,11 +90,11 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
 
         function popUpConexion(){
           console.log(verEstadoConexion());
-          if (true) {
+          if (!verEstadoConexion()) {
             myApp = new Framework7();
             myApp.modal({
             title:  'Atencion!',
-            text: 'Se requiere una conexion a internet activa para utilizar esta aplicacion',
+            text: 'Se requiere conexion a internet para utilizar esta aplicacion',
             buttons: [
               {
                 text: 'Wifi',
