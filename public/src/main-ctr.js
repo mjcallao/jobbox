@@ -87,6 +87,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
         // ########## PopUp Conexion ##########
 
         function popUpConexion(){
+          console.log(verEstadoConexion());
           if (!verEstadoConexion()) {
             myapp = new Framework7();
             myapp.confirm("Se requiere una conexion a internet", "Conexion requerida",
