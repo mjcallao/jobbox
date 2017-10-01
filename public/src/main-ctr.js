@@ -70,8 +70,8 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
                 console.log(locCountryName);
         });
 
+        "sdf";
 
-        
             
         
 
