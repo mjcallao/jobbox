@@ -90,22 +90,41 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
 
         function popUpConexion(){
           console.log(verEstadoConexion());
-          if (!verEstadoConexion()) {
-            myapp = new Framework7();
-            myapp.confirm("Se requiere una conexion a internet", "Conexion requerida",
-              function()
+          if (true) {
+            myApp = new Framework7();
+            myApp.modal({
+            title:  'Atencion!',
+            text: 'Se requiere una conexion a internet activa para utilizar esta aplicacion',
+            buttons: [
               {
-                console.log("SI");
+                text: 'Wifi',
+                bold: true,
+                onClick: function() {
+                  cordova.plugins.diagnostic.switchToWifiSettings();
+                }
               },
-              function()
               {
-                console.log("NO");
-              }
-
-              );
+                text: 'Datos moviles',
+                bold: true,
+                onClick: function() {
+                  cordova.plugins.diagnostic.switchToMobileDataSettings();
+                }
+              },
+              {
+                text: 'Salir',
+                bold: true,
+                onClick: function() {
+                  void;
+                }
+              },
+            ]
+            });
           }
         }
 
+        // ########## Abrir configuracion de GPS ##########
+
+        // ########## Abrir configuracion de internet y 3g ##########
 
 
         /*
@@ -115,6 +134,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
         verEstadoGPS();
 
         */
+
         popUpConexion(); 
 
         });
