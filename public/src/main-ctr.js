@@ -57,13 +57,22 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
         
 
         function preguntarGPS(){
-          cordova.plugins.diagnostic.isLocationEnabled(function(locationEnabled){
-
-
-
-          }
+          cordova.plugins.diagnostic.isLocationEnabled(function(locationEnabled)
+            {
+              if (locationEnabled){
+                return true;
+              }else{
+                return false;
+              }
+            },
+            function(error)
+            {
+              console.log(error);
+            }
           )
         };
+          
+        console.log(preguntarGPS());
 
         /*try{
         console.log("Inicio de debug...")
