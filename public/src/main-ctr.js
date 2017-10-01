@@ -79,7 +79,9 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
           if (conexion == "none") 
           {
             return false;
-          }        
+          }else{
+            return true;
+          }
         }
         
 
