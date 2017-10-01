@@ -9,7 +9,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
 
 
 
-        // ### Conseguir Localidad y Provincia ###
+        // ########## Funcion para conseguir Localidad y Provincia ##########
 
         // Se llama a la funcion llamarGPS()
         // Si tiene exito: Almacena la latitud y la longitud en dos variables globales y las usa para llamar a la API. Se parsea el resultado y lo asigna a variables.
@@ -40,10 +40,9 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
           jsonLocation = data;
 
           // Aca parseo la informacion que devuelve el JSON y la asigno a estas dos variables.
-          provincia = jsonLocation.data.results[3].formatted_address.split(',')[0];
-          localidad = jsonLocation.data.results[2].formatted_address.split(',')[0];
-          console.log(provincia);
-          console.log(localidad);
+          provincia = jsonLocation.data.results[1].address_components[2].long_name;
+          localidad = jsonLocation.data.results[1].address_components[0].long_name;
+          setearProvinciaLocalidad(provincia, localidad);
           });
           }
           catch(err){
@@ -51,11 +50,12 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
           }
         }
 
-        
+        function setearProvinciaLocalidad(provincia,localidad){
+          console.log(provincia);
+          console.log(localidad);
+        }
 
-
-
-        // ### Funcion para ver si el GPS esta prendido ###
+        // ########## Funcion para ver si el GPS esta prendido ##########
        
         function verEstadoGPS(){
           // Tiene esta forma de Callback para que si devuelve false pueda tirar un dialogo avisando que tiene que ser prendido.
@@ -70,25 +70,53 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
         });
         }
 
-
-        // ### Funcion para ver que si internet esta prendido ###
+        // ########## Funcion para ver si internet esta prendido ##########
 
         function verEstadoConexion(){
           // La variable conexion va a devolver "none" si no esta conectado a internet. O va a devolver "unknown" si hubo algun error.
           var conexion = navigator.connection.type;
+          console.log(conexion);
           if (conexion == "none") 
           {
             return false;
           }        
         }
         
+
+
+        // ########## PopUp Conexion ##########
+
+        function popUpConexion(){
+          if (!verEstadoConexion()) {
+            myapp = new Framework7();
+            myapp.confirm("Se requiere una conexion a internet", "Conexion requerida",
+              function()
+              {
+                console.log("SI");
+              },
+              function()
+              {
+                console.log("NO");
+              }
+
+              );
+          }
+        }
+
+
+
+        /*
+
         llamarGPS();
         console.log(verEstadoConexion());
         verEstadoGPS();
 
+        */
+        popUpConexion(); 
 
         });
      
+        
      
 
     $scope.mains = "todo";
