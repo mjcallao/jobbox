@@ -51,74 +51,41 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
           }
         }
 
-        llamarGPS();
+        
+
+
 
         // ### Funcion para ver si el GPS esta prendido ###
-        
-
-        /*function preguntarGPS(){
-          cordova.plugins.diagnostic.isLocationEnabled(function(locationEnabled)
-            {
-              if (locationEnabled){
-                return true;
-              }else{
-                return false;
-              }
-            },
-            function(error)
-            {
-              console.log(error);
-            }
-          )
-        };*/
-
-        function preguntarGPS(){
-          try{
-            if (cordova.plugins.diagnostic.isLocationEnabled()) {
-              return true;
+       
+        function verEstadoGPS(){
+          // Tiene esta forma de Callback para que si devuelve false pueda tirar un dialogo avisando que tiene que ser prendido.
+          cordova.plugins.diagnostic.isLocationEnabled(function (locationEnabled){
+            if (locationEnabled){
+              console.log(true);
             }else{
-              return false;
-            }
-          }
-          catch (err){
-            console.log(err);
-          }
-        }
-          
-        console.log(preguntarGPS());
-
-        /*try{
-        console.log("Inicio de debug...")
-        
-        // Prueba que phonegap(cordova) este funcionando. Solo sirve en celular.
-        var isCordovaApp = !!window.cordova;
-        console.log(isCordovaApp)
-        
-        // La variable gps va a devolver True si esta prendido o False si esta apagado.
-        console.log("GPS: ");
-        cordova.plugins.diagnostic.isLocationEnabled(function (locationEnabled){
-          if (locationEnabled){
-            console.log(true);
-          }else{
-            console.log(false);
-          };
-          }, function(error){
-            console.log("error");
+              console.log(false);
+            };
+            }, function(error){
+              console.log("error");
         });
+        }
 
 
         // ### Funcion para ver que si internet esta prendido ###
 
-        // La variable conexion va a devolver "none" si no esta conectado a internet. O va a devolver "unknown" si hubo algun error.
-        console.log("Conexion: ")
-        var conexion = navigator.connection.type;        
-        console.log(conexion);
+        function verEstadoConexion(){
+          // La variable conexion va a devolver "none" si no esta conectado a internet. O va a devolver "unknown" si hubo algun error.
+          var conexion = navigator.connection.type;
+          if (conexion == "none") 
+          {
+            return false;
+          }        
         }
-        catch(err){
-          console.log(err);  
-        }
+        
+        llamarGPS();
+        console.log(verEstadoConexion());
+        verEstadoGPS();
 
-        });*/
 
         });
      
