@@ -7,22 +7,52 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
 
     angular.element(document).ready(function(){ 
 
-        //Variables de latitud y longitud
-        varApiLatitud = -34.807597;
-        varApiLongitud = -58.444243;
 
-        //String que conecta a la API con las coordenadas y nuestra KEY
-        stringGeoCode = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+varApiLatitud+','+varApiLongitud+'&key=AIzaSyCimUfkmcHkggWlx2TwdZN2h367zBj0bVU';
 
-        //Request para que traiga parseados la provincia y la localidad
-        $http.get(stringGeoCode).then(function(data) {    
-        jsonLocation = data;
-        provincia = jsonLocation.data.results[3].formatted_address.split(',')[0];
-        localidad = jsonLocation.data.results[2].formatted_address.split(',')[0];
-        console.log(provincia);
-        console.log(localidad);
-        });
+        // ### Pasos para convertir ubicacion en Localidad y Provincia ###
 
+
+        // 1) Conseguir las coordenadas de latitud y longitud.
+
+        // Se llama a la funcion llamarGPS()
+        // Si tiene exito: Almacena la latitud y la longitud en dos variables globales y las usa para llamar a la API. Se parsea el resultado y lo asigna a variables.
+        // Si no tiene exito: Entra al callback onError()
+
+
+        var onSuccess = function(position) {
+          latitud = position.coords.latitude;
+          longitud = position.coords.longitude;
+          console.log(latitud);
+          console.log(longitud);
+          llamarApiGeo(latitud, longitud);
+        };
+
+        function onError(error) {
+          console.log(error);
+        }
+      
+
+        function llamarGPS(){
+          console.log("localizacion Entra");
+          navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
+        }
+
+        llamarGPS();
+
+
+        function llamarApiGeo(latitud,longitud){          
+          stringGeoCode = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitud+','+longitud+'&key=AIzaSyCimUfkmcHkggWlx2TwdZN2h367zBj0bVU';
+
+          $http.get(stringGeoCode).then(function(data) {    
+          jsonLocation = data;
+
+          // Aca parseo la informacion que devuelve el JSON y la asigno a estas dos variables.
+          provincia = jsonLocation.data.results[3].formatted_address.split(',')[0];
+          localidad = jsonLocation.data.results[2].formatted_address.split(',')[0];
+          console.log(provincia);
+          console.log(localidad);
+          });
+        }
 
         });    
 
@@ -55,40 +85,6 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
           console.log(err);  
         }
 
-        // Funcion obtener ubicacion
-
-        var onSuccess = function(position) {
-          latitud = position.coords.latitude;
-          longitud = position.coords.longitude;
-          console.log(latitud);
-          console.log(longitud);
-        };
-
-        function onError(error) {
-          console.log(error);
-        }
-        
-
-        function llamarGPS(){
-          console.log("localizacion Entra");
-          navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
-        }
-
-        llamarGPS();
-
-        // Funcion para ver nombre de la ciudad segun coordenadas
-
-        var locCurrent = new google.maps.LatLng(latitud, longitud);
-
-        var geocoder = new google.maps.Geocoder();
-            geocoder.geocode({ 'latLng': locCurrent }, function (results, status) {
-                var locItemCount = results.length;
-                var locCountryNameCount = locItemCount - 1;
-                var locCountryName = results[locCountryNameCount].formatted_address;
-
-                console.log(locItemCount);
-                console.log(locCountryNameCount);
-                console.log(locCountryName);
         });*/
 
 
