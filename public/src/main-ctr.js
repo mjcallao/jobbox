@@ -128,8 +128,6 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
                 text: 'GPS',
                 bold: true,
                 onClick: function() {
-                  console.log(latitud);
-                  console.log(longitud);
                   cordova.plugins.diagnostic.switchToLocationSettings()
                 }
               },
@@ -154,7 +152,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
 
         
         
-        // Llama al GPS, parsea la localidad y setea 2 variables globales provincia y localidad con el resultado
+        // Llama al GPS, parsea la localidad y el callback setea dos variables con localidad y provincia.
         llamarGPS();
         
         // Pregunta si tiene conexion y si no la tiene lanza el PopUp
