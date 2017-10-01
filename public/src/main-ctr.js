@@ -9,15 +9,15 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
 
 
 
-        // ### Pasos para convertir ubicacion en Localidad y Provincia ###
-
-
-        // 1) Conseguir las coordenadas de latitud y longitud.
+        // ### Conseguir Localidad y Provincia ###
 
         // Se llama a la funcion llamarGPS()
         // Si tiene exito: Almacena la latitud y la longitud en dos variables globales y las usa para llamar a la API. Se parsea el resultado y lo asigna a variables.
         // Si no tiene exito: Entra al callback onError()
 
+        function llamarGPS(){
+          navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
+        }
 
         var onSuccess = function(position) {
           latitud = position.coords.latitude;
@@ -30,17 +30,10 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
         function onError(error) {
           console.log(error);
         }
-      
 
-        function llamarGPS(){
-          console.log("localizacion Entra");
-          navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
-        }
-
-        llamarGPS();
-
-
-        function llamarApiGeo(latitud,longitud){          
+        // Le paso por parametro latitud y longitud
+        function llamarApiGeo(latitud,longitud){
+          try{
           stringGeoCode = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitud+','+longitud+'&key=AIzaSyCimUfkmcHkggWlx2TwdZN2h367zBj0bVU';
 
           $http.get(stringGeoCode).then(function(data) {    
@@ -52,11 +45,26 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
           console.log(provincia);
           console.log(localidad);
           });
+          }
+          catch(err){
+            console.log(err);
+          }
         }
 
-        });    
+        llamarGPS();
 
+        // ### Funcion para ver si el GPS esta prendido ###
         
+
+        function preguntarGPS(){
+          cordova.plugins.diagnostic.isLocationEnabled(function(locationEnabled){
+
+
+
+          }
+          )
+        };
+
         /*try{
         console.log("Inicio de debug...")
         
@@ -76,6 +84,9 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
             console.log("error");
         });
 
+
+        // ### Funcion para ver que si internet esta prendido ###
+
         // La variable conexion va a devolver "none" si no esta conectado a internet. O va a devolver "unknown" si hubo algun error.
         console.log("Conexion: ")
         var conexion = navigator.connection.type;        
@@ -87,9 +98,9 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
 
         });*/
 
-
+        });
      
-      /*} )*/
+     
 
     $scope.mains = "todo";
 
