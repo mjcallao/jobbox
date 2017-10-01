@@ -71,7 +71,6 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
         }
         
 
-
         // ########## PopUp Conexion ##########
 
         function popUpConexion(){          
@@ -149,17 +148,15 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
           );
         }
 
-
-        
-        
-        // Llama al GPS, parsea la localidad y el callback setea dos variables con localidad y provincia.
-        llamarGPS();
+             
+        // Llama al GPS, parsea la localidad y el callback setea dos variables con localidad y provincia. (No tengo la mas puta idea como sacarlas afuera)
+        // llamarGPS();
         
         // Pregunta si tiene conexion y si no la tiene lanza el PopUp
         // popUpConexion(); 
         
         // Pregunta si tiene GPS y si no tiene lanza el PopUp
-        popUpGPS();
+        // popUpGPS();
 
         
 
