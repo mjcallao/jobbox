@@ -2,11 +2,32 @@
 // angular.module("main",["ui.router"]);
 
 
-angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($scope,$rootScope){
+angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", function($http,$scope,$rootScope){
 
 
     angular.element(document).ready(function(){ 
-        try{
+
+        //Variables de latitud y longitud
+        varApiLatitud = -34.807597;
+        varApiLongitud = -58.444243;
+
+        //String que conecta a la API con las coordenadas y nuestra KEY
+        stringGeoCode = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+varApiLatitud+','+varApiLongitud+'&key=AIzaSyCimUfkmcHkggWlx2TwdZN2h367zBj0bVU';
+
+        //Request para que traiga parseados la provincia y la localidad
+        $http.get(stringGeoCode).then(function(data) {    
+        jsonLocation = data;
+        provincia = jsonLocation.data.results[3].formatted_address.split(',')[0];
+        localidad = jsonLocation.data.results[2].formatted_address.split(',')[0];
+        console.log(provincia);
+        console.log(localidad);
+        });
+
+
+        });    
+
+        
+        /*try{
         console.log("Inicio de debug...")
         
         // Prueba que phonegap(cordova) este funcionando. Solo sirve en celular.
@@ -68,15 +89,11 @@ angular.module("main").controller("mainCtrl",[ "$scope","$rootScope", function($
                 console.log(locItemCount);
                 console.log(locCountryNameCount);
                 console.log(locCountryName);
-        });
-
-        "sdf";
-
-            
-        
+        });*/
 
 
-      } )
+     
+      /*} )*/
 
     $scope.mains = "todo";
 
