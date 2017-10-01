@@ -1,0 +1,74 @@
+<!DOCTYPE  hmtl>
+<html lang="es"ng-app="miapp">
+    <head>
+        <meta charset="utf-8">
+        <script src="angular.min.js"></script>
+        <script src="angular-ui-router.min.js"></script>
+        <script>
+    var miapp = angular.module('miapp', ['ui.router']);
+    miapp.config(function($stateProvider, $urlRouterProvider) {
+
+        // $urlRouterProvider.otherwise("/index");
+
+        $stateProvider
+            .state('index', {
+                url: "/index",
+                templateUrl: "js/plantilla1.html",
+                
+                controller: 'a'
+            })
+            .state('estado2', {
+                url: "/estado2",
+                templateUrl: "js/plantilla2.html"
+            })
+            .state('estado3', {
+                url: "/estado3",
+                templateUrl: "js/plantilla3.html"
+            }) 
+
+    });
+miapp.controller('aa', function($scope, $http) {
+  $http.post("/session").then(
+        function successCallback(response) {
+            $scope.myWelcome=response.data;
+            // this callback will be called asynchronously
+            // when the response is available
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });  
+})  
+      
+      
+    
+    </script>
+    </head>
+    <body style="text-align: center">
+
+    <div ui-view></div>
+    <a ui-sref="index">Estado1</a>
+    <a ui-sref="estado2">Estado2</a>
+    <a ui-sref="estado3">Estado3</a>
+<script>
+
+
+</script>
+        <div ng-app="myApp" ng-controller="aa"> 
+
+<p>Today's welcome message is:</p>
+
+<h1>{{myWelcome._id}} -------------{{hola}}</h1>
+
+</div>
+
+<p>The $http service requests a page on the server, and the response is set as the value of the "myWelcome" variable.</p>
+
+
+
+        <a href="signup.html">registrarme</a>
+        <a href="login.html">login</a>
+        <a href="update.html">update</a>
+
+       <script src="js/a-crt.js"> </script>
+    </body>
+</html>

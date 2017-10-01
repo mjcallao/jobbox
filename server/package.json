@@ -1,0 +1,20 @@
+{
+  "name": "emi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "archivos-estaticos.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular-ui-router": "^1.0.3",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "express-session": "^1.15.6",
+    "gulp": "^3.9.1",
+    "gulp-cli": "^1.4.0",
+    "mongoose": "^4.11.7"
+  }
+}
