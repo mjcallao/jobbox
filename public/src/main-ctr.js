@@ -114,7 +114,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
                 text: 'Salir',
                 bold: true,
                 onClick: function() {
-                  void;
+                  null
                 }
               },
             ]
