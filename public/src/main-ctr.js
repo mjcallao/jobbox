@@ -17,34 +17,40 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
 
         function llamarGPS(){
           navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
+
         }
 
         var onSuccess = function(position) {
-          latitud = position.coords.latitude;
-          longitud = position.coords.longitude;
-          console.log(latitud);
-          console.log(longitud);
-          llamarApiGeo(latitud, longitud);
+            latitud = position.coords.latitude;
+            longitud = position.coords.longitude;
+            console.log(latitud);
+            console.log(longitud);
+            llamarApiGeo(latitud, longitud);
         };
 
         function onError(error) {
-          console.log(error);
+            console.log(error);
         }
 
         // Le paso por parametro latitud y longitud
         function llamarApiGeo(latitud,longitud){
+          console.log("latitud",latitud)
+          console.log("longitud",longitud)
           try{
-          stringGeoCode = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitud+','+longitud+'&key=AIzaSyCimUfkmcHkggWlx2TwdZN2h367zBj0bVU';
+            stringGeoCode = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitud+','+longitud+'&key=AIzaSyCimUfkmcHkggWlx2TwdZN2h367zBj0bVU';
 
-          $http.get(stringGeoCode).then(function(data) {    
-          jsonLocation = data;
+            $http.get(stringGeoCode).then(function(data) { 
+              console.log("informacion",data)   
+              jsonLocation = data;
 
-          // Aca parseo la informacion que devuelve el JSON y la asigno a estas dos variables.
-          provincia = jsonLocation.data.results[3].formatted_address.split(',')[0];
-          localidad = jsonLocation.data.results[2].formatted_address.split(',')[0];
-          console.log(provincia);
-          console.log(localidad);
-          });
+              // Aca parseo la informacion que devuelve el JSON y la asigno a estas dos variables.
+              provincia = jsonLocation.data.results[3].formatted_address.split(',')[0];
+              localidad = jsonLocation.data.results[2].formatted_address.split(',')[0];
+              console.log(provincia);
+              console.log(localidad);
+              alert(provincia)
+              alert(localidad)
+            });
           }
           catch(err){
             console.log(err);
