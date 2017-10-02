@@ -20,7 +20,25 @@
             <!--<div ng-click="login()" class="button button-fill color-white">ENTRAR</div>-->
             <button type="submit" class="button button-fill color-white">ENTRAR</button>
 
-            <div  ui-sref="menu" class="button button-fill color-white"> Entrar con Facebook </div>
+            <!-- <button type="button" class="button button-fill color-white"  onclick="FB.login()"></button>
+ -->
+            <div  class="button button-fill color-white"> Entrar con Facebook </div>
+            <!-- <div  ui-sref="menu" class="button button-fill color-white"> Entrar con Facebook </div> -->
+
+            <p>Iniciar sesi&oacute;n con Facebook:</p>
+            <!-- <fb:login-button show-faces=”false”></fb:login-button> -->
+            <!-- <fb:login-button perms="email,user_birthday"></fb:login-button> -->
+
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+            </fb:login-button>
+
+
+              <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+
+            <div id="status">
+            </div>
+
+
           
             <div ui-sref="menu" class="button button-fill color-white" ng-click="userVisitor()">Modo Visitante</div>
           </div>
