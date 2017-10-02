@@ -30,8 +30,8 @@ angular.module('main').controller("loginCtrl",[ "$scope","$rootScope","$location
                         if($scope.data =="No se encontro al Usuario"){
                                 $rootScope.loading =false;
                         }else{
-                        console.log("data: ",data.data)
-                        $rootScope.userApp = data.data
+                            console.log("data: ",data.data)
+                            $rootScope.userApp = data.data
                            $location.path( "/menu" );
                            $rootScope.loading =false;
                         }

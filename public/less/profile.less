@@ -18,4 +18,36 @@
             }
         }
     }
+                    
+        label {
+            font-size: 20px;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        label {
+            color: grey;
+        }
+
+        .clasificacion {
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            text-align: center;
+        }
+
+        label:hover,
+        label:hover ~ label {
+        color: orange;
+        }
+
+        input[type="radio"]:checked ~ label {
+        color: orange;
+        }
+        textarea{
+            width: 96%;
+            height: 50px;
+            resize: none;
+        }
 }

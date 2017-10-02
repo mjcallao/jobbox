@@ -2,7 +2,7 @@
 // angular.module("main",["ui.router"]);
 
 
-angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", function($http,$scope,$rootScope){
+angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope","$location", function($http,$scope,$rootScope,$location){
 
 
     angular.element(document).ready(function(){ 
@@ -192,7 +192,10 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
        $scope.showPage = id;
        jobBox.closePanel();
     }
-
+    $scope.gotoProfileUser = function(user){
+       $rootScope.userSearch= user;
+       $location.path( "/profile" );
+    }
 
     /*$rootScope.tools=[
 
