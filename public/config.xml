@@ -46,12 +46,12 @@
 
     <icon src="icon.png" />
 
-    <icon src="public/res/icons/android/drawable-ldpi-icon" platform="android" qualifier="ldpi" />
-    <icon src="public/res/icons/android/drawable-mdpi-icon" platform="android" qualifier="mdpi" />
-    <icon src="public/res/icons/android/drawable-hdpi-icon" platform="android" qualifier="hdpi" />
-    <icon src="public/res/icons/android/drawable-xhdpi-icon" platform="android" qualifier="xhdpi" />
-    <icon src="public/res/icons/android/drawable-xxhdpi-icon" platform="android" qualifier="xxhdpi" />
-    <icon src="public/res/icons/android/drawable-xxxhdpi-icon" platform="android" qualifier="xxxhdpi" /> 
+    <icon src="public/res/icons/android/icon-ldpi-icon" platform="android" qualifier="ldpi" />
+    <icon src="public/res/icons/android/icon-mdpi-icon" platform="android" qualifier="mdpi" />
+    <icon src="public/res/icons/android/icon-hdpi-icon" platform="android" qualifier="hdpi" />
+    <icon src="public/res/icons/android/icon-xhdpi-icon" platform="android" qualifier="xhdpi" />
+    <icon src="public/res/icons/android/icon-xxhdpi-icon" platform="android" qualifier="xxhdpi" />
+    <icon src="public/res/icons/android/icon-xxxhdpi-icon" platform="android" qualifier="xxxhdpi" /> 
 
     <engine name="android" spec="~6.2.3" />
     <engine name="browser" spec="~4.1.0" />
