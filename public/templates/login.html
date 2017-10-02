@@ -5,7 +5,7 @@
       <form name="formLogin" ng-submit="login()" novalidate>
 
         <h3><label for="nameUser">Email</label></h3>
-        <input type="email"  class="email" id="email" ng-model="userLogin.email"  name="email" placeholder="email" ng-required="true" ng-pattern="validationEmail">
+        <input type="email"  class="email" id="email" ng-model="userLogin.email"  name="email" placeholder="email" ng-required="true" >
       
         <h3><label for="nameUser">Contraseña</label></h3>
         <input type="password"  class="nameUser" id="nameUser" ng-model="userLogin.password" name="password" placeholder="Contraseña" ng-required="true">
@@ -13,7 +13,10 @@
 
           <div class="message-error animated pulse" ng-show=" formLogin.$invalid &&  formLogin.$submitted">
             <span  class="animated pulse" ng-show="formLogin.email.$error.required || formLogin.password.$error.required">Todos los campos son Obligatorios</span><br>
-            <span  class="animated pulse" ng-show="formLogin.email.$error.email || formLogin.email.$error.pattern">Email Inválido</span>
+            <span  class="animated pulse" ng-show="formLogin.email.$error.email ">Email Inválido</span>
+          </div>
+          <div class="message-error animated pulse" >
+             <span  class="animated pulse" ng-show="data =='No se encontro al Usuario'">{{data}}</span>
           </div>
       
           <div class="container-btn">

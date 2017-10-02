@@ -2,7 +2,7 @@
 <div  class="page-content" >
   <div class="animated fadeInUp">
         <h1>Registro</h1>
-       <form name="formRegistration" ng-submit="nextPageRegistration()" novalidate>
+       <form name="formRegistration" ng-submit="registrationUserApp()" novalidate>
          <input type="text" placeholder="Nombre" ng-model="userRegistration.name" name="name" class="name" id="name" ng-pattern="/^[a-zA-Z]*$/" ng-required="true" ng-maxlength="30" ng-minlength="2"> 
          <input type="text" placeholder="Apellido" ng-model="userRegistration.lastName"  name="lastName" class="lastName" id="lastName"  ng-pattern="/^[a-zA-Z]*$/" ng-required="true" ng-maxlength="30" ng-minlength="2">
          <input type="email" placeholder="Email" ng-model="userRegistration.email"  name="email" class="email " id="email" ng-pattern="validationEmailRegistration" ng-required="true">
@@ -25,7 +25,8 @@
             <span  class="animated pulse" ng-show="formRegistration.lastName.$error.maxlength || formRegistration.lastName.$error.minlength ">El Apellido debe tener entre 2 y 30 caracteres</span>
             
           </div>
-          <button type="submit" class="button button-fill color-white">Siguiente</button>
+          <div class="message-error" ng-show="data == 'Usted ya Tiene una cuenta en TrabajoYa'"><span>{{data}}</span></div>
+          <button type="submit" class="button button-fill color-white">Registrarme</button>
        </form>
       <p ui-sref="login">VOLVER</p>
   </div>

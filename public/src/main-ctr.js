@@ -45,10 +45,10 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
 
 
               // Aca parseo la informacion que devuelve el JSON y la asigno a estas dos variables.
-              provincia = jsonLocation.data.results[1].address_components[2].long_name;
-              localidad = jsonLocation.data.results[1].address_components[0].long_name;
-              setearProvinciaLocalidad(provincia, localidad);
-          });
+                provincia = jsonLocation.data.results[1].address_components[2].long_name;
+                localidad = jsonLocation.data.results[1].address_components[0].long_name;
+                setearProvinciaLocalidad(provincia, localidad);
+            });
 
           }
           catch(err){
@@ -170,7 +170,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
         });
      
         
-     
+     $rootScope.loading =false;
 
     $scope.mains = "todo";
 
