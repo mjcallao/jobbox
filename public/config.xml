@@ -95,14 +95,16 @@
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
-    <platform name="android">
-        <icon density="ldpi" src="res/icons/android/drawable-ldpi-icon.png" />
-        <icon density="mdpi" src="res/icons/android/drawable-mdpi-icon.png" />
-        <icon density="hdpi" src="res/icons/android/drawable-hdpi-icon.png" />
-        <icon density="xhdpi" src="res/icons/android/drawable-xhdpi-icon.png" />
-        <icon density="xxhdpi" src="res/icons/android/drawable-xxhdpi-icon.png" />
-        <icon density="xxxhdpi" src="res/icons/android/drawable-xxxhdpi-icon.png" />
-</platform>
+
+    <icon src="icon.png" />
+
+    <icon src="drawable-ldpi-icon" platform="android" qualifier="ldpi" />
+    <icon src="drawable-mdpi-icon" platform="android" qualifier="mdpi" />
+    <icon src="drawable-hdpi-icon" platform="android" qualifier="hdpi" />
+    <icon src="drawable-xhdpi-icon" platform="android" qualifier="xhdpi" />
+    <icon src="drawable-xxhdpi-icon" platform="android" qualifier="xxhdpi" />
+    <icon src="drawable-xxxhdpi-icon" platform="android" qualifier="xxxhdpi" />
+
     <engine name="android" spec="~6.2.3" />
     <engine name="browser" spec="~4.1.0" />
     <plugin name="cordova.plugins.diagnostic" version="*" />
