@@ -1,4 +1,4 @@
-<div ng-controller="registrationCtrl" class="page categories body-color-text" >
+<div ng-controller="singUpCartegoriesCtrl" class="page categories body-color-text" >
   <div  class="page-content" >
     <div class="animated fadeInUp">
       <h1>Oficios</h1>
@@ -6,10 +6,10 @@
     </div>
   </div>
 </div>
-<div class="categories" ng-controller="registrationCtrl">
+<div class="categories" ng-controller="singUpCartegoriesCtrl">
         <div class="container-button ">
           <div class="animated zoomIn"  style="  -webkit-animation-delay: 0.80s;  animation-delay: 0.80s;">
-          <div class=" button button-fill color-white "  ui-sref="profile"> Registrarme </div>
+          <div class=" button button-fill color-white "  ng-click="saveCategories($scope.addCat)"> Registrarme </div>
         </div>
       </div>
 </div>

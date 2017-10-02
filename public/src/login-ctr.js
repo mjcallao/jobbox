@@ -14,7 +14,7 @@ angular.module('main').controller("loginCtrl",[ "$scope","$rootScope","$location
     $scope.login = function(){
         console.log("form: ",$scope.formLogin.$valid);
         if($scope.formLogin.$valid){
-
+                $rootScope.loading =true;
                 var data = {
                     email: $scope.userLogin.email,
                     password: $scope.userLogin.password
@@ -28,14 +28,18 @@ angular.module('main').controller("loginCtrl",[ "$scope","$rootScope","$location
                     function successCallback(data){console.log("1",data)
                         $scope.data =data.data;
                         if($scope.data =="No se encontro al Usuario"){
-
+                                $rootScope.loading =false;
                         }else{
+                        console.log("data: ",data.data)
+                        $rootScope.userApp = data.data
                            $location.path( "/menu" );
+                           $rootScope.loading =false;
                         }
                     },
                     
                     function errorCallback(err){
                         console.log("11",err)
+                        $rootScope.loading =false;
                     }
 
                     );

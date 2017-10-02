@@ -1,16 +1,11 @@
-angular.module("main").controller("singUpEmployeeCtrl",["$scope","$location","$rootScope",function($scope,$location,$rootScope){
+angular.module("main").controller("singUpEmployeeCtrl",["$scope","$location","$rootScope","$http",function($scope,$location,$rootScope,$http){
     
-    $scope.userRegistration={
-        name:"",
-        lastName:"",
+    $rootScope.userRegistration={
+      
         tel:"",
         cel:"",
-        email:"",
-        password:"",
         provinces : "",
-        locality : "",
-        conditions:"",
-        categories:[]
+        locality : ""
     }
 
 
@@ -24,5 +19,6 @@ angular.module("main").controller("singUpEmployeeCtrl",["$scope","$location","$r
         }else{
         }
     }
+
 
 }])

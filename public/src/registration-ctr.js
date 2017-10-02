@@ -48,20 +48,11 @@ angular.module("main").controller("registrationCtrl",["$scope","$location","$roo
                         if($scope.data =="Usted ya Tiene una cuenta en TrabajoYa"){
 
                         }else{
-                            myApp = new Framework7();
-                            myApp.modal({
-                            title:  'Usuario registrado con éxito!',
-                            // text: 'Se requiere GPS activo.',
-                            buttons: [
-                            {
-                                text: 'ACEPTAR',
-                                bold: true,
-                                onClick: function() {
-                                    window.location="/#!/menu";
-                                }
-                            }
-                            ]
-                            });
+                            $rootScope.userApp = data.data
+                            console.log($rootScope.userApp)
+                            
+                            $location.path( "/menu" );
+                            alert("Usuario registrado con éxito!");
                         }
                         
                     },
