@@ -10,24 +10,22 @@
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
-    <preference name="SplashScreen" value="none"/>
     <preference name="SplashScreenDelay" value="0"/>
-    <preference name="FadeSplashScreenDuration" value="0"/>
 
-    <platform name="android">
-    <splash density="land-ldpi" src="www/res/screen/android/drawable-land-ldpi-screen.png" />
-    <splash density="land-mdpi" src="www/res/screen/android/drawable-land-mdpi-screen.png" />
-    <splash density="land-hdpi" src="www/res/screen/android/drawable-land-hdpi-screen.png" />
-    <splash density="land-xhdpi" src="www/res/screen/android/drawable-land-xhdpi-screen.png" />
-    <splash density="land-xxhdpi" src="www/res/screen/android/drawable-land-xxhdpi-screen.png" />
-    <splash density="land-xxxhdpi" src="www/res/screen/android/drawable-land-xxxhdpi-screen.png" />
-    <splash density="port-ldpi" src="www/res/screen/android/drawable-port-ldpi-screen.png" />
-    <splash density="port-mdpi" src="www/res/screen/android/drawable-port-mdpi-screen.png" />
-    <splash density="port-hdpi" src="www/res/screen/android/drawable-port-hdpi-screen.png" />
-    <splash density="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi-screen.png" />
-    <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
-    <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
-    </platform>
+<!--     <platform name="android">
+<splash density="land-ldpi" src="www/res/screen/android/drawable-land-ldpi-screen.png" />
+<splash density="land-mdpi" src="www/res/screen/android/drawable-land-mdpi-screen.png" />
+<splash density="land-hdpi" src="www/res/screen/android/drawable-land-hdpi-screen.png" />
+<splash density="land-xhdpi" src="www/res/screen/android/drawable-land-xhdpi-screen.png" />
+<splash density="land-xxhdpi" src="www/res/screen/android/drawable-land-xxhdpi-screen.png" />
+<splash density="land-xxxhdpi" src="www/res/screen/android/drawable-land-xxxhdpi-screen.png" />
+<splash density="port-ldpi" src="www/res/screen/android/drawable-port-ldpi-screen.png" />
+<splash density="port-mdpi" src="www/res/screen/android/drawable-port-mdpi-screen.png" />
+<splash density="port-hdpi" src="www/res/screen/android/drawable-port-hdpi-screen.png" />
+<splash density="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi-screen.png" />
+<splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
+<splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
+</platform> -->
 
     <access origin="*" />
     <allow-intent href="http://*/*" />
