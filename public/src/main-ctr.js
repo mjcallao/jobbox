@@ -9,7 +9,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
 
 
 
-        // ### Conseguir Localidad y Provincia ###
+        // ########## Funcion para conseguir Localidad y Provincia ##########
 
         // Se llama a la funcion llamarGPS()
         // Si tiene exito: Almacena la latitud y la longitud en dos variables globales y las usa para llamar a la API. Se parsea el resultado y lo asigna a variables.
@@ -43,58 +43,133 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
               console.log("informacion",data)   
               jsonLocation = data;
 
+
               // Aca parseo la informacion que devuelve el JSON y la asigno a estas dos variables.
-              provincia = jsonLocation.data.results[3].formatted_address.split(',')[0];
-              localidad = jsonLocation.data.results[2].formatted_address.split(',')[0];
-              console.log(provincia);
-              console.log(localidad);
-              alert(provincia)
-              alert(localidad)
-            });
+              provincia = jsonLocation.data.results[1].address_components[2].long_name;
+              localidad = jsonLocation.data.results[1].address_components[0].long_name;
+              setearProvinciaLocalidad(provincia, localidad);
+          });
+
           }
           catch(err){
             console.log(err);
           }
         }
 
-        
-
-
-
-        // ### Funcion para ver si el GPS esta prendido ###
-       
-        function verEstadoGPS(){
-          // Tiene esta forma de Callback para que si devuelve false pueda tirar un dialogo avisando que tiene que ser prendido.
-          cordova.plugins.diagnostic.isLocationEnabled(function (locationEnabled){
-            if (locationEnabled){
-              console.log(true);
-            }else{
-              console.log(false);
-            };
-            }, function(error){
-              console.log("error");
-        });
+        function setearProvinciaLocalidad(provincia,localidad){
+          console.log(provincia);
+          console.log(localidad);
         }
 
 
-        // ### Funcion para ver que si internet esta prendido ###
+        // ########## Funcion para ver si internet esta prendido ##########
 
         function verEstadoConexion(){
           // La variable conexion va a devolver "none" si no esta conectado a internet. O va a devolver "unknown" si hubo algun error.
           var conexion = navigator.connection.type;
+          console.log(conexion);
           if (conexion == "none") 
           {
             return false;
-          }        
+          }else{
+            return true;
+          }
         }
         
-        llamarGPS();
-        console.log(verEstadoConexion());
-        verEstadoGPS();
+
+        // ########## PopUp Conexion ##########
+
+        function popUpConexion(){          
+          if (!verEstadoConexion()) {
+            myApp = new Framework7();
+            myApp.modal({
+            title:  'Atencion!',
+            text: 'Se requiere conexion a internet.',
+            buttons: [
+              {
+                text: 'Wifi',
+                bold: true,
+                onClick: function() {
+                  cordova.plugins.diagnostic.switchToWifiSettings();
+                }
+              },
+              {
+                text: 'Datos moviles',
+                bold: true,
+                onClick: function() {
+                  cordova.plugins.diagnostic.switchToMobileDataSettings();
+                }
+              },
+              {
+                text: 'Salir',
+                bold: true,
+                onClick: function() {
+                  null
+                }
+              },
+            ]
+            });
+          }
+        }
+
+        // ########## PopUp GPS ##########
+
+        function popUpGPS()
+        {
+          cordova.plugins.diagnostic.isLocationEnabled(function (locationEnabled)
+          {
+            if (locationEnabled)
+            {
+              null
+            }
+            else
+            {
+            myApp = new Framework7();
+            myApp.modal({
+            title:  'Atencion!',
+            text: 'Se requiere GPS activo.',
+            buttons: [
+              {
+                text: 'GPS',
+                bold: true,
+                onClick: function() {
+                  cordova.plugins.diagnostic.switchToLocationSettings()
+                }
+              },
+              {
+                text: 'Salir',
+                bold: true,
+                onClick: function() {
+                  null
+                }
+              },
+            ]
+            });
+            };
+          }, 
+          function(error)
+          {
+              console.log("error");
+          }
+          );
+        }
+
+             
+        // Llama al GPS, parsea la localidad y el callback setea dos variables con localidad y provincia. (No tengo la mas puta idea como sacarlas afuera)
+        // llamarGPS();
+        
+        // Pregunta si tiene conexion y si no la tiene lanza el PopUp
+        // popUpConexion(); 
+        
+        // Pregunta si tiene GPS y si no tiene lanza el PopUp
+        // popUpGPS();
+
+        
 
 
         });
      
+        
      
 
     $scope.mains = "todo";
