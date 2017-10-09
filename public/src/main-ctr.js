@@ -127,7 +127,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope","$l
             myApp = new Framework7();
             myApp.modal({
             title:  'Atencion!',
-            text: 'Se requiere GPS activo.',
+            text: 'Nos gustaría obtener su ubicación.',
             buttons: [
               {
                 text: 'GPS',
@@ -162,7 +162,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope","$l
         // popUpConexion(); 
         
         // Pregunta si tiene GPS y si no tiene lanza el PopUp
-        // popUpGPS();
+        popUpGPS();
 
         
 

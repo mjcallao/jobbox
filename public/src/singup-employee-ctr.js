@@ -2,6 +2,51 @@ angular.module("main").controller("singUpEmployeeCtrl",["$scope","$location","$r
     
     angular.element(document).ready(function(){
 
+        function llamarGPS(){
+          navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
+        }
+
+        var onSuccess = function(position) {
+            latitud = position.coords.latitude;
+            longitud = position.coords.longitude;
+            console.log(latitud);
+            console.log(longitud);
+            llamarApiGeo(latitud, longitud);
+        };
+
+        function onError(error) {
+            console.log(error);
+        }
+
+        // Le paso por parametro latitud y longitud
+        function llamarApiGeo(latitud,longitud){
+          console.log("latitud",latitud)
+          console.log("longitud",longitud)
+          try{
+            stringGeoCode = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitud+','+longitud+'&key=AIzaSyCimUfkmcHkggWlx2TwdZN2h367zBj0bVU';
+
+            $http.get(stringGeoCode).then(function(data) { 
+              console.log("informacion",data)   
+              jsonLocation = data;
+
+
+              // Aca parseo la informacion que devuelve el JSON y la asigno a estas dos variables.
+                provincia = jsonLocation.data.results[1].address_components[2].long_name;
+                localidad = jsonLocation.data.results[1].address_components[0].long_name;
+                setearProvinciaLocalidad(provincia, localidad);
+            });
+
+          }
+          catch(err){
+            console.log(err);
+          }
+        }
+
+        function setearProvinciaLocalidad(provincia,localidad){
+          console.log(provincia);
+          console.log(localidad);
+        }
+
         function popUpGPS()
         {
           cordova.plugins.diagnostic.isLocationEnabled(function (locationEnabled)
@@ -9,32 +54,12 @@ angular.module("main").controller("singUpEmployeeCtrl",["$scope","$location","$r
             if (locationEnabled)
             {
                 console.log("tiene");
-                // Aca deberia buscar la ubicacion
-                null
+                llamarGPS();
             }
             else
             {
-            myApp = new Framework7();
-            myApp.modal({
-            title:  'Atencion!',
-            text: 'Nos gustaría obtener su ubicación.',
-            buttons: [
-              {
-                text: 'GPS',
-                bold: true,
-                onClick: function() {
-                  cordova.plugins.diagnostic.switchToLocationSettings()
-                }
-              },
-              {
-                text: 'Salir',
-                bold: true,
-                onClick: function() {
-                  null
-                }
-              },
-            ]
-            });
+                console.log("sin gps");
+                null;
             };
           }, 
           function(error)
