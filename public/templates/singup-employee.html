@@ -6,11 +6,11 @@
 
             <!-- Codigo de area tienen de 2 a 5 numeros (Contando el 0). -->
             <!-- Telefonos FIJOS tienen entre 6 y 8 caracteres -->
-            <input type="tel" placeholder="Cod. Area y Tel. Fijo (Ej: 011 222333)" ng-model="userRegistration.tel"  name="tel" class="tel" id="tel" ng-pattern="validationTelFijo" ng-required="true">
+            <input type="tel" placeholder="Telefono Fijo (Ej: 011 222333)" ng-model="userRegistration.tel"  name="tel" class="tel" id="tel" ng-pattern="validationTelFijo" ng-required="true">
 
             <!-- Codigos de area tienen entre 2 a 5 (Contando el 0) -->
             <!-- Celulares tienen entre 6 y 8 caracteres -->
-            <input type="tel" placeholder="Cod. Area y Celular (Ej: 011 12345678) (Sin el 15)"  ng-model="userRegistration.cel" name="cel" class=" cel" id="cel" ng-pattern="validationCelular"  ng-required="true">
+            <input type="tel" placeholder="Celular (Ej: 011 12345678) (Sin el 15)"  ng-model="userRegistration.cel" name="cel" class=" cel" id="cel" ng-pattern="validationCelular"  ng-required="true">
 
 
             <select  ng-model="userRegistration.provinces"  name="provinces" ng-required="true" >
