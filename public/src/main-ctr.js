@@ -159,11 +159,10 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope","$l
         // llamarGPS();
         
         // Pregunta si tiene conexion y si no la tiene lanza el PopUp
-        
-        popUpConexion(); 
+        // popUpConexion(); 
         
         // Pregunta si tiene GPS y si no tiene lanza el PopUp
-        popUpGPS();
+        // popUpGPS();
 
         
 

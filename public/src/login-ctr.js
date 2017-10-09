@@ -12,6 +12,24 @@ angular.module('main').controller("loginCtrl",[ "$scope","$rootScope","$location
     // $scope.validationEmail ="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$";
     // $scope.validationEmail ="/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i";
 
+    function popUpError(){
+        myApp = new Framework7();
+        myApp.modal({
+        title:  'Atencion!',
+        text: 'No se pudo conectar con el servidor. Asegurese de tener una conexion a internet activa.',
+        buttons: [
+          {
+            text: 'Aceptar',
+            bold: true,
+            onClick: function() {
+              null
+            }
+          },
+        ]
+        });
+          
+    }
+
     $scope.login = function(){
         console.log("form: ",$scope.formLogin.$valid);
         if($scope.formLogin.$valid){
@@ -41,6 +59,7 @@ angular.module('main').controller("loginCtrl",[ "$scope","$rootScope","$location
                     function errorCallback(err){
                         console.log("11",err)
                         $rootScope.loading =false;
+                        popUpError();
                     }
 
                     );
@@ -49,7 +68,7 @@ angular.module('main').controller("loginCtrl",[ "$scope","$rootScope","$location
 
             // $location.path( "/menu" );
         }else{
-            
+
         }
     }    
 }]);
