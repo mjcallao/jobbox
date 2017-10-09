@@ -8,7 +8,7 @@ angular.module("main").controller("singUpEmployeeCtrl",["$scope","$location","$r
         locality : ""
     }
 
-
+   $scope.validationTelFijo =/^\d{2,5}\s\d{6,8}$/;
 
     $scope.nextPageRegistration =function (){
         // console.log("user",$scope.userRegistration);
