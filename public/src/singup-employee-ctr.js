@@ -17,7 +17,7 @@ angular.module("main").controller("singUpEmployeeCtrl",["$scope","$location","$r
             myApp = new Framework7();
             myApp.modal({
             title:  'Atencion!',
-            text: 'Nos gustaria obtener su ubicacion',
+            text: 'Nos gustaría obtener su ubicación.',
             buttons: [
               {
                 text: 'GPS',
