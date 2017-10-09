@@ -51,7 +51,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
           }
         }
 
-        llamarGPS();
+
 
         // ### Funcion para ver si el GPS esta prendido ###
         
@@ -119,6 +119,8 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope", fu
         }
 
         });*/
+
+        llamarGPS();
 
         });
      

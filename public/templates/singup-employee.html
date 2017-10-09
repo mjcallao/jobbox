@@ -3,8 +3,14 @@
       <div class="animated fadeInUp">
             <h1>Registro</h1>
           <form name="formRegistration" ng-submit="nextPageRegistration()" novalidate>
-            <input type="tel" placeholder="Telefono fijo. ej:12348574" ng-model="userRegistration.tel"  name="tel" class="tel" id="tel" ng-maxlength="8" ng-minlength="8" ng-required="true">
-            <input type="tel" placeholder="Celular. ej: 1154113608"  ng-model="userRegistration.cel" name="cel" class=" cel" id="cel" ng-maxlength="10" ng-minlength="10" ng-required="true">
+
+            <!-- Codigo de area tienen de 2 a 5 numeros (Contando el 0). -->
+            <!-- Telefonos FIJOS tienen entre 6 y 8 caracteres -->
+            <input type="tel" placeholder="Cod. Area y Tel. Fijo (Ej: 011 222333)" ng-model="userRegistration.tel"  name="tel" class="tel" id="tel" ng-pattern="validationTelFijo" ng-required="true">
+
+            <input type="tel" placeholder="Celular (Ej: 1154113608)"  ng-model="userRegistration.cel" name="cel" class=" cel" id="cel" ng-maxlength="10" ng-minlength="10" ng-required="true">
+
+
             <select  ng-model="userRegistration.provinces"  name="provinces"ng-required="true" >
               <option   ng-repeat="provinces in provinces" ng-value="provinces">{{provinces[1]}}</option>
             </select>
@@ -22,7 +28,7 @@
                 
                 ">Todos los campos son Obligatorios</span><br>
                 
-                <span  class="animated pulse" ng-show="formRegistration.tel.$error.maxlength || formRegistration.tel.$error.minlength ">El telefono tiene que contener 8 números</span><br>
+                <span  class="animated pulse" ng-show="formRegistration.tel.$error.pattern">El telefono tiene que contener 8 números</span><br>
                 <span  class="animated pulse" ng-show="formRegistration.cel.$error.maxlength || formRegistration.cel.$error.minlength ">El celular tiene que contener 10 números</span>
             
               </div>
