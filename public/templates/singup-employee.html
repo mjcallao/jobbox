@@ -8,30 +8,34 @@
             <!-- Telefonos FIJOS tienen entre 6 y 8 caracteres -->
             <input type="tel" placeholder="Cod. Area y Tel. Fijo (Ej: 011 222333)" ng-model="userRegistration.tel"  name="tel" class="tel" id="tel" ng-pattern="validationTelFijo" ng-required="true">
 
-            <input type="tel" placeholder="Celular (Ej: 1154113608)"  ng-model="userRegistration.cel" name="cel" class=" cel" id="cel" ng-maxlength="10" ng-minlength="10" ng-required="true">
+            <!-- Codigos de area tienen entre 2 a 5 (Contando el 0) -->
+            <!-- Celulares tienen entre 6 y 8 caracteres -->
+            <input type="tel" placeholder="Cod. Area y Celular (Ej: 011 12345678) (Sin el 15)"  ng-model="userRegistration.cel" name="cel" class=" cel" id="cel" ng-pattern="validationCelular"  ng-required="true">
 
 
-            <select  ng-model="userRegistration.provinces"  name="provinces"ng-required="true" >
+            <select  ng-model="userRegistration.provinces"  name="provinces" ng-required="true" >
               <option   ng-repeat="provinces in provinces" ng-value="provinces">{{provinces[1]}}</option>
             </select>
+
             <select  ng-model="userRegistration.locality" name="locality" ng-required="true">
               <option ng-repeat="localidad in localidad" ng-if="localidad[1] == userRegistration.provinces[0]  " value="{{localidad[2]}}">{{localidad[2]}}</option>
             </select>
 
-              <div class="message-error animated pulse" ng-show=" formRegistration.$invalid &&  formRegistration.$submitted">
-                <span  class="animated pulse" ng-show="
+              <div class="message-error animated pulse" ng-show=" formRegistration.$invalid && formRegistration.$submitted">
 
-                formRegistration.tel.$error.required || 
+                <span  class="animated pulse" ng-show="formRegistration.tel.$error.pattern">Ingrese el telefono fijo con el siguiente formato: "011 222333"</span>
+
+                <span  class="animated pulse" ng-show="formRegistration.tel.$valid && formRegistration.cel.$error.pattern">Ingrese el celular con el siguiente formato: "011 12345678" Sin el 15.</span>
+                
+                <span  class="animated pulse" ng-show="formRegistration.cel.$valid &&
+                (formRegistration.tel.$error.required || 
                 formRegistration.cel.$error.required  || 
                 formRegistration.provinces.$error.required ||
-                formRegistration.locality.$error.required 
-                
-                ">Todos los campos son Obligatorios</span><br>
-                
-                <span  class="animated pulse" ng-show="formRegistration.tel.$error.pattern">El telefono tiene que contener 8 números</span><br>
-                <span  class="animated pulse" ng-show="formRegistration.cel.$error.maxlength || formRegistration.cel.$error.minlength ">El celular tiene que contener 10 números</span>
-            
+                formRegistration.locality.$error.required)                 
+                ">Todos los campos son Obligatorios</span>
+                            
               </div>
+
               <button type="submit" class="button button-fill color-white">Siguiente</button>
           </form>
           <p ui-sref="menu">VOLVER</p>
