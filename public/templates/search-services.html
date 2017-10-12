@@ -15,7 +15,7 @@
                         <!--<a ng-click="gotoPage('home')">close me</a>-->
                         <div class="geolocation">
                             <span>Utilizar mi posición actual</span> 
-                            <input  type="checkbox" class='toggle'   id="geolocation" name='check-4' />    
+                            <input  type="checkbox" class='toggle' id="geolocation" name='check-4' ng-click="onClick_getPosition()"/>    
                         </div> 
 
 
@@ -27,19 +27,22 @@
                             </div>
                         </div>
                         
+
+                        <div class="search-advanced">
+                            <h3>Provincia y localidad</h3>
+                            <select  ng-model="searchUser.provinces"  name="provinces" ng-required="true" >
+                                <option   ng-repeat="provinces in provinces" ng-value="provinces">{{provinces[1]}}</option>
+                            </select>
+
+                            <select  ng-model="searchUser.locality" name="locality" ng-required="true">
+                                <option ng-repeat="localidad in localidad" ng-if="localidad[1] == searchUser.provinces[0]  " value="{{localidad[2]}}">{{localidad[2]}}</option>
+                            </select>
+                        </div>
+
                         <div class="navbar animated background-header close-panel" ng-click="onClick_SearchUser()" >
                             <div class="navbar-inner">
                                 <h3 >Buscar Servicios</h3>
                             </div>
-                        </div>
-
-                        <div class="search-advanced">
-                            <select  ng-model="searchUser.provinces"  name="provinces"ng-required="true" >
-                                <option   ng-repeat="provinces in provinces" ng-value="provinces">{{provinces[1]}}</option>
-                            </select>
-                            <select   name="locality" ng-required="true">
-                                <option ng-repeat="localidad in localidad" ng-if="localidad[1] == searchUser.provinces[0]  " value="{{localidad[2]}}">{{localidad[2]}}</option>
-                            </select>
                         </div>
 
                     </form>   
