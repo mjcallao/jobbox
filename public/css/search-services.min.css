@@ -1,1 +1,71 @@
-.search-services .background-header{background-color:#78e2dd}.search-services .navbar{box-shadow:none;border:1px solid #fff;border-radius:10px;margin:6px;max-width:250px;width:100%}.search-services .navbar .navbar-inner{text-align:center}.search-services .navbar .navbar-inner h3{width:100%}.search-services .content{padding-top:70px!important}.search-services .content h2{border-bottom:1px solid #fff;padding-bottom:8px}.search-services .content .geolocation span{position:relative;top:-10px;padding:10px;font-size:15px;font-weight:bolder}.search-services .content .content-services-menu{padding-top:26px;margin-top:20px;border-top:4px solid #fff;max-width:250px;margin-left:auto;margin-right:auto;height:200px;position:relative;padding-bottom:5px;border-bottom:4px solid #fff}.search-services .content .content-services-menu .page{background:0 0}.search-services .content .content-services-menu .page .page-content{max-width:250px;padding-top:10px}.search-services .content .content-services-menu .page .page-content .search input{width:90%}.search-services .content form select{max-width:250px;margin-bottom:10px}.search-services .record .row{border:1px solid #fff;border-radius:10px;padding:2px;margin-bottom:4px}.search-services .record .row h4{margin:0 0 2px;padding:0}.search-services .record .row h3{margin:5px}
+/* Cambie los estilos necesarios directamente desde aca porque no pude hacer funcionar el minificador de LESS */
+
+.search-services .background-header {
+    background-color: #78e2dd;
+}
+.search-services .navbar {
+    box-shadow: none;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    margin: 6px;
+    max-width: 250px;
+    width: 100%}
+.search-services .navbar .navbar-inner {
+    text-align: center;
+}
+.search-services .navbar .navbar-inner h3 {
+    width: 100%}
+.search-services .content {
+	/* Cambiado de 70 a 10 */
+    padding-top: 10px!important;
+}
+.search-services .content h2 {
+    border-bottom: 1px solid #fff;
+    padding-bottom: 8px;
+}
+.search-services .content .geolocation span {
+    position: relative;
+    top: -10px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bolder;
+}
+.search-services .content .content-services-menu {
+    padding-top: 26px;
+    /* Cambiado de 20 a 10 */
+    margin-top: 10px;
+    border-top: 4px solid #fff;
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    position: relative;
+    padding-bottom: 5px;
+    border-bottom: 4px solid #fff;
+}
+.search-services .content .content-services-menu .page {
+    background: 0 0;
+}
+.search-services .content .content-services-menu .page .page-content {
+    max-width: 250px;
+    padding-top: 10px;
+}
+.search-services .content .content-services-menu .page .page-content .search input {
+    width: 90%}
+.search-services .content form select {
+    max-width: 250px;
+    margin-bottom: 10px;
+}
+.search-services .record .row {
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 2px;
+    margin-bottom: 4px;
+}
+.search-services .record .row h4 {
+    margin: 0 0 2px;
+    padding: 0;
+}
+.search-services .record .row h3 {
+    margin: 5px;
+}
