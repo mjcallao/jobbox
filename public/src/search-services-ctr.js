@@ -94,7 +94,7 @@ angular.module('main').controller("searchServicesCtrl",["$http", "$scope","$root
                 console.log("tiene");
 
                 // PARA TESTEAR POR PC NECESITO QUE LLAME A LA FUNC DIRECTAMENTE PORQUE LA PC NO LEE PLUGINS DIAGNOSTIC, LA COMENTO Y LLAMO ABAJO DIRECTAMENTE.
-                // llamarGPS();
+                llamarGPS();
             }
             else
             {
@@ -108,10 +108,8 @@ angular.module('main').controller("searchServicesCtrl",["$http", "$scope","$root
           }
           );
         }
-
-
-        llamarGPS();
-        //popUpGPS();
+        
+        // popUpGPS();
     }
 
     $scope.onClick_ShowRecord = function(){
