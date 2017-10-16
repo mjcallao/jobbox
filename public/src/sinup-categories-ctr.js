@@ -2,11 +2,13 @@ angular.module("main").controller("singUpCartegoriesCtrl",["$scope","$location",
     
     $scope.userRegistrationapp={
         stateServices: true,
-        tel:$rootScope.userRegistration.tel,
-        cel:$rootScope.userRegistration.cel,
+        tel: $rootScope.userRegistration.tel,
+        cel: $rootScope.userRegistration.cel,
         provinces : $rootScope.userRegistration.provinces,
         locality : $rootScope.userRegistration.locality,
-        categories:["Electricista","gasista","plomero","instalador de aire acondicionado","pintura","albañilería","fletes","limpieza de alfombras y tapizados","armadores de muebles","service electrodomésticos", "decoraciones"]
+
+        // categories:["Electricista","gasista","plomero","instalador de aire acondicionado","pintura","albañilería","fletes","limpieza de alfombras y tapizados","armadores de muebles","service electrodomésticos", "decoraciones"]
+        categories:[]
     }
 
    $scope.addCategories =function(value){
@@ -16,12 +18,13 @@ angular.module("main").controller("singUpCartegoriesCtrl",["$scope","$location",
             $scope.userRegistrationapp.categories.push(value);
         }else{
             var x = $scope.userRegistrationapp.categories.indexOf(value);//averigua la posisicon del elemento
-            $scope.userRegistrationapp.categories.splice(x,1);//alimina un elemento a partir de esa posicion
+            $scope.userRegistrationapp.categories.splice(x,1);//elimina un elemento a partir de esa posicion
         }
         console.log($scope.userRegistrationapp.categories)
-        $scope.addCat = $scope.userRegistrationapp.categories
     }
+
     $scope.saveCategories = function(){
+                console.log($scope.userRegistrationapp);
                 $rootScope.loading =true;
                 var data = {
                     email: $rootScope.userApp.email,

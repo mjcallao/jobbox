@@ -6,11 +6,11 @@
 
             <!-- Codigo de area tienen de 2 a 5 numeros (Contando el 0). -->
             <!-- Telefonos FIJOS tienen entre 6 y 8 caracteres -->
-            <input type="number" placeholder="Telefono Fijo (Cod. Area + Numero)" ng-model="userRegistration.tel"  name="tel" class="tel" id="tel" minlength="8" maxlength="13"  ng-required="true">
+            <input type="number" id="inputTel" placeholder="Telefono Fijo (Cod. Area + Numero)" ng-model="userRegistration.tel"  name="tel" class="tel" id="tel" minlength="8" maxlength="13"  ng-required="true">
 
             <!-- Codigos de area tienen entre 2 a 5 (Contando el 0) -->
             <!-- Celulares tienen entre 6 y 8 caracteres -->
-            <input type="number" placeholder="Celular (Cod. Area + Numero.) - Sin el 15"  ng-model="userRegistration.cel" name="cel" class=" cel" id="cel" minlength="8" maxlength="15"  ng-required="true">
+            <input type="number" id="inputCel" placeholder="Celular (Cod. Area + Numero.) - Sin el 15"  ng-model="userRegistration.cel" name="cel" class=" cel" id="cel" minlength="8" maxlength="15"  ng-required="true">
 
 
             <select  ng-model="userRegistration.provinces"  name="provinces" ng-required="true">
@@ -20,6 +20,8 @@
             <select  ng-model="userRegistration.locality" name="locality" ng-required="true">
               <option ng-repeat="localidad in localidad" ng-if="localidad[1] == userRegistration.provinces[0]" value="{{localidad[2]}}">{{localidad[2]}}</option>
             </select>
+
+             <!-- <input type="file"> -->
 
               <div class="message-error animated pulse" ng-show=" formRegistration.$invalid && formRegistration.$submitted">
 

@@ -69,7 +69,7 @@ angular.module("main").controller("singUpEmployeeCtrl",["$scope","$location","$r
           }
         }
 
-        function popUpGPS()
+        function preguntarGPS()
         {
           cordova.plugins.diagnostic.isLocationEnabled(function (locationEnabled)
           {
@@ -93,17 +93,43 @@ angular.module("main").controller("singUpEmployeeCtrl",["$scope","$location","$r
           );
         }
 
-        popUpGPS();
+        function ponerVariables(){
+          if ($rootScope.userApp.tel != undefined)
+          {
+          $rootScope.userRegistration.tel = $rootScope.userApp.tel;
+          $rootScope.$apply();
+          }
+          if($rootScope.userApp.cel != undefined)
+          {
+          $rootScope.userRegistration.cel=$rootScope.userApp.cel;
+          $rootScope.$apply();
+          }
+          if($rootScope.userApp.province != undefined && $rootScope.userApp.locality != undefined) {
+            console.log("asdfa");
+            var provincia = $rootScope.userApp.province
+            var localidad = $rootScope.userApp.locality
+            setearProvinciaLocalidad(provincia, localidad);
+            $rootScope.$apply();
+          }
+          else
+          {
 
-        // BORRAR ESTA FUNCION DESPUES
-        // llamarGPS();
+            // Hay que testear si funciona directamente llamar el GPS en el celular y no lo tiene prendido a ver que pasa si se rompe todo o que.
+
+            // preguntarGPS();
+            llamarGPS();
+            console.log("llamo");
+          }
+
+        }
+         
+        ponerVariables();
+
 
     });
 
 
-
-    $rootScope.userRegistration={
-      
+    $rootScope.userRegistration={      
         tel:"",
         cel:"",
         provinces : "",
@@ -111,6 +137,7 @@ angular.module("main").controller("singUpEmployeeCtrl",["$scope","$location","$r
     }
 
     $scope.nextPageRegistration =function (){
+        console.log($rootScope.userRegistration)
         // console.log("user",$scope.userRegistration);
         // console.log("form: ",$scope.formRegistration.$valid);
         if($scope.formRegistration.$valid){

@@ -7,8 +7,9 @@ angular.module("main").controller("registrationCtrl",["$scope","$location","$roo
         password:"",
         stateServices: false,
         stateTool: false
-
     }
+
+
 
     // $scope.addCategories =function(value){
     //     if(document.getElementById(value).checked){//agrega
