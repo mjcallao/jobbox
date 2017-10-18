@@ -11,6 +11,42 @@ console.log('Conectado con éxito a la BD con el STRING de CONEXIÓN: ' + strSer
 });
 
 
+var categoriasEsquema = {
+nombre: String,
+estado: Boolean
+};
+
+var Categoria = mongoose.model("Categoria",categoriasEsquema);
+
+var dataCategoria = {
+
+	nombre: "Electricista",
+	estado: false
+}
+
+var categ = new Categoria(dataCategoria);
+
+categ.save(function(err){
+	console.log(categ);
+});
+  
+  // ["Electricista",false],
+  // ["Gasista",false],
+  // ["Plomero",false],
+  // ["Instalador de aire acondicionado",false],
+  // ["Pintura",false],
+  // ["Electricista",false],
+  // ["Albañilería",false],
+  // ["Fletes",false],
+  // ["Limpieza de alfombras y tapizados",false],
+  // ["Armadores de muebles",false],
+  // ["service electrodomésticos",false],
+  // ["Decoraciones",false]
+
+
+
+
+
 
 var app = express();
 
