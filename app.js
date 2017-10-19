@@ -23,15 +23,20 @@ app.listen(app.get("port"),()=>{
 
 var express = require("express");
 var mongoose = require('mongoose');
-/*var strServidorMongo = 'mongodb://piamond.sytes.net:27017/jobbox';*/
+var strServidorMongo = 'mongodb://upe:upe@ds125555.mlab.com:25555/trabajosya';
 
 
-//Conexión a la bdd
-//mongoose.connect('mongodb://127.0.0.1:27017?ext.ssh.server=desarrolloupe.sytes.net:16330&ext.ssh.username=grupo3&ext.ssh.password=desarrolloupe/jobbox', function(err, res) {
+//Conexiones viejas
+/*mongoose.connect('mongodb://127.0.0.1:27017?ext.ssh.server=desarrolloupe.sytes.net:16330&ext.ssh.username=grupo3&ext.ssh.password=desarrolloupe/jobbox', function(err, res) {
 /*mongoose.connect('mongodb://piamond.sytes.net:27017/jobbox', function(err, res) {
   if(err) throw err;
 console.log('Conectado con éxito a la BD con el STRING de CONEXIÓN: ' + strServidorMongo );
 });*/
+
+
+
+/*Comentado para pruebas de registro*/
+
 
 mongoose.connect('mongodb://upe:upe@ds125555.mlab.com:25555/trabajosya', function(err, res) {
   if(err) throw err;
@@ -50,37 +55,60 @@ var usuarioEsquema={
   province: String,
   stateServices: Boolean,
   stateTools: Boolean,
-  /*categories: 
-  {
-    Electricista: Boolean,
-    Gasista: Boolean,
-    Plomero: Boolean,
-    Instalador_de_aire_acondicionado: Boolean,
-    Pintura: Boolean,
-    Electricista: Boolean,
-    Albañilería: Boolean,
-    Fletes: Boolean,
-    Limpieza_de_alfombras_y_tapizados: Boolean,
-    Armadores_de_muebles: Boolean,
-    service_electrodomésticos: Boolean,
-    Decoraciones: Boolean
-  }*/
+  categories:{},
+  tools:{}
 }
-
-var Usuarios = mongoose.model("usuarios", usuarioEsquema);
 
 var datosUsuario = {
   email: "upe@upe.edu.ar",
   password: "upe"
 }
 
+var Usuarios = mongoose.model(datosUsuario.email, usuarioEsquema);
+
+Usuarios.findOne({"email":"upe@upe.edu.ar"}, "password", function(err, person){
+  if (err) return handleError(err);
+  if (person != null) {
+    console.log("Ya existe");
+  }else{
+    var user = new Usuarios(datosUsuario);
+    user.save(function(err){
+    console.log(user);
+    mongoose.disconnect();
+  });
+  }
+})
+
+/*
+
+
 var user = new Usuarios(datosUsuario);
 
+
+*/
+
+
+
+/* 
 user.save(function(err){
   console.log(user);
+  mongoose.disconnect();
 });
 
-/*var categoriasEsquema = {
+*/
+
+/*HASTA ACA*/
+
+
+
+
+
+
+
+
+/*
+
+var categoriasEsquema = {
 nombre: String,
 estado: Boolean
 };
