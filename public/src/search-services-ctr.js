@@ -139,8 +139,8 @@ angular.module('main').controller("searchServicesCtrl",["$http", "$scope","$root
           $scope.toggled = true;  
         }
         else{
+          $scope.toggled = false;
           console.log("cass")
-          $scope.toggled == false;
         }
         
     }
