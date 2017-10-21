@@ -16,10 +16,12 @@ angular.module('main').controller("searchServicesCtrl",["$http", "$scope","$root
 
     $scope.onClick_getPosition = function(){
         function llamarGPS(){
+            console.log("llamargps")
             navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy: true});
         }
 
         var onSuccess = function(position) {
+            console.log("succes")
             latitud = position.coords.latitude;
             longitud = position.coords.longitude;
             llamarApiGeo(latitud, longitud);
