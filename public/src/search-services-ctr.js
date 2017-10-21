@@ -14,6 +14,8 @@ angular.module('main').controller("searchServicesCtrl",["$http", "$scope","$root
         locality:"Ezeiza"   
     }]
 
+    $scope.toggled=false;
+
     $scope.onClick_getPosition = function(){
         function llamarGPS(){
             console.log("llamargps")
@@ -132,7 +134,15 @@ angular.module('main').controller("searchServicesCtrl",["$http", "$scope","$root
           );
         }
 
-        popUpGPS();
+        if ($scope.toggled == false) {
+          popUpGPS();
+          $scope.toggled = true;  
+        }
+        else{
+          console.log("cass")
+          $scope.toggled == false;
+        }
+        
     }
 
     $scope.onClick_ShowRecord = function(){
