@@ -101,7 +101,28 @@ angular.module('main').controller("searchServicesCtrl",["$http", "$scope","$root
             else
             {
                 console.log("sin gps");
-                null;
+                myApp = new Framework7();
+                myApp.modal({
+                title:  'Atencion!',
+                text: 'Nos gustaría obtener su ubicación.',
+                buttons: [
+                  {
+                    text: 'GPS',
+                    bold: true,
+                    onClick: function() {
+                      cordova.plugins.diagnostic.switchToLocationSettings()
+                    }
+                  },
+                  {
+                    text: 'Salir',
+                    bold: true,
+                    onClick: function() {
+                      null
+                    }
+                  },
+                ]
+                });
+
             };
           }, 
           function(error)
