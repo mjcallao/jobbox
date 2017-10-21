@@ -1,59 +1,50 @@
-var express = require("express");
+var express = require('express');
+var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var strServidorMongo = 'mongodb://piamond.sytes.net:27017/jobbox';
-
-
-//Conexión a la bdd
-//mongoose.connect('mongodb://127.0.0.1:27017?ext.ssh.server=desarrolloupe.sytes.net:16330&ext.ssh.username=grupo3&ext.ssh.password=desarrolloupe/jobbox', function(err, res) {
-mongoose.connect('mongodb://piamond.sytes.net:27017/jobbox', function(err, res) {
-  if(err) throw err;
-console.log('Conectado con éxito a la BD con el STRING de CONEXIÓN: ' + strServidorMongo );
-});
-
-
-var categoriasEsquema = {
-nombre: String,
-estado: Boolean
-};
-
-var Categoria = mongoose.model("Categoria",categoriasEsquema);
-
-var dataCategoria = {
-
-	nombre: "Electricista",
-	estado: false
-}
-
-var categ = new Categoria(dataCategoria);
-
-categ.save(function(err){
-	console.log(categ);
-});
-  
-  // ["Electricista",false],
-  // ["Gasista",false],
-  // ["Plomero",false],
-  // ["Instalador de aire acondicionado",false],
-  // ["Pintura",false],
-  // ["Electricista",false],
-  // ["Albañilería",false],
-  // ["Fletes",false],
-  // ["Limpieza de alfombras y tapizados",false],
-  // ["Armadores de muebles",false],
-  // ["service electrodomésticos",false],
-  // ["Decoraciones",false]
-
-
-
-
-
-
+var methodOverride = require("method-override");
 var app = express();
 
-app.use(express.static("public"));
+// Connection to DB
+mongoose.connect('mongodb://piamond.sytes.net/clients', function(err, res) {
+// mongoose.connect('mongodb://localhost/clients', function(err, res) {
+ if(err) throw err;
+ console.log('Connected to Database');
+});
+
+// Middlewares
+app.use(bodyParser.urlencoded({ extended: false }));  
+app.use(bodyParser.json());  
+app.use(methodOverride());
+
+// Import Models and Controllers
+var models     = require('./models/client')(app, mongoose);
+var ClientCtrl = require('./controllers/clients');
+
+var router = express.Router();
+
+// Index - Route
+router.get('/', function(req, res) {  
+   res.send("Hola Mundo - www.programacion.com.py");
+});
+
+app.use(router);
+
+// API routes
+var api = express.Router();
+
+api.route('/clients')  
+  .get(ClientCtrl.findAll)
+  .post(ClientCtrl.add);
+
+api.route('/clients/:id')  
+  .get(ClientCtrl.findById)
+  .put(ClientCtrl.update)
+  .delete(ClientCtrl.delete);
+
+app.use('/api', api);  
 
 
-app.set("port",(process.env.PORT || 5600));
-app.listen(app.get("port"),()=>{
-    console.log("puerto: ",app.get("port"))
+// Start server
+app.listen(3000, function() {
+  console.log("Node server running on http://localhost:3000");
 });
