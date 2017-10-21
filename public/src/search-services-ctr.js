@@ -110,8 +110,8 @@ angular.module('main').controller("searchServicesCtrl",["$http", "$scope","$root
           }
           );
         }
-        
-        // popUpGPS();
+
+        popUpGPS();
     }
 
     $scope.onClick_ShowRecord = function(){

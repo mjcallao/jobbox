@@ -38,7 +38,7 @@ console.log('Conectado con éxito a la BD con el STRING de CONEXIÓN: ' + strSer
 /*Comentado para pruebas de registro*/
 
 
-mongoose.connect('mongodb://upe:upe@ds125555.mlab.com:25555/trabajosya', function(err, res) {
+/*mongoose.connect('mongodb://upe:upe@ds125555.mlab.com:25555/trabajosya', function(err, res) {
   if(err) throw err;
 console.log('Conectado con éxito a la BD' );
 });
@@ -77,7 +77,7 @@ Usuarios.findOne({"email":"upe@upe.edu.ar"}, "password", function(err, person){
     mongoose.disconnect();
   });
   }
-})
+})*/
 
 /*
 

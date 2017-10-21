@@ -93,6 +93,7 @@ angular.module("main").controller("singUpEmployeeCtrl",["$scope","$location","$r
           );
         }
 
+        // Aca pongo las variables si ya las tenia cargadas
         function ponerVariables(){
           if ($rootScope.userApp.tel != undefined)
           {
