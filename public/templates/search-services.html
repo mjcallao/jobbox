@@ -38,14 +38,13 @@
 
                         <div class="navbar animated background-header close-panel" ng-click="onClick_SearchUser()" >
                             <div class="navbar-inner">
-                                <h3 >Buscar Servicios</h3>
+                                <h3 class="textoBuscarServicios">Buscar Servicios</h3>
                             </div>
                         </div>
 
                     </form>   
                     <h3 ng-click="onClick_ShowRecord()">Ver historial</h3>
                     <div class="record animated bounce" ng-repeat="record in history" ng-if="showRecord == true">
-
                         <div class="row">
                             <div class="col-50">
                                 <h3>{{record.service}}</h3>

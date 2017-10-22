@@ -288,7 +288,6 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope","$l
   ["Plomero",false],
   ["Instalador de aire acondicionado",false],
   ["Pintura",false],
-  ["Electricista",false],
   ["Albañilería",false],
   ["Fletes",false],
   ["Limpieza de alfombras y tapizados",false],

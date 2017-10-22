@@ -12,7 +12,9 @@
     height: 50px;
     width: 50px;
     display: inline-block;
-    border-radius: 50%}
+    border-radius: 50%;
+    margin-top: 8px;
+}
 .home .search-job span {
     position: relative;
     top: -18px;
@@ -128,3 +130,25 @@
 .home .content-messegeUser .center-p {
     text-align: center;
 }
+
+/*
+Codigo agregado de mas
+ */
+
+ .palabraNegrita{
+ 	font-size: 16px;
+ }
+
+.cajaBuscarServicios{    
+    border: 1px solid #f1f1f1;
+    border-radius: 10px;
+    background-color: #78e2dd;  
+    height: 40px;
+    width: 55%;
+    margin-left: 22.5%;
+    top:8px;
+ }
+
+ .textoBuscarServicios{
+
+ }

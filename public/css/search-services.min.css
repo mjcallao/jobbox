@@ -14,7 +14,8 @@
     text-align: center;
 }
 .search-services .navbar .navbar-inner h3 {
-    width: 100%}
+    width: 100%
+}
 .search-services .content {
 	/* Cambiado de 70 a 10 */
     padding-top: 10px!important;
@@ -38,7 +39,7 @@
     max-width: 250px;
     margin-left: auto;
     margin-right: auto;
-    height: 200px;
+    height: 250px;
     position: relative;
     padding-bottom: 5px;
     border-bottom: 4px solid #fff;
@@ -69,3 +70,4 @@
 .search-services .record .row h3 {
     margin: 5px;
 }
+
