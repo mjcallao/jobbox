@@ -1,6 +1,7 @@
 {
     "port" : 3069,
     "mongoose": {
-        "uri": "mongodb://localhost/tshirts"
+        "uri": "mongodb://localhost/jobbox"
+        // "uri": "mongodb://desarrolloupe.sytes.net/jobbox"
     }
 }

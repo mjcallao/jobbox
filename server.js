@@ -38,7 +38,8 @@ routes = require('./routes/tshirts')(app);
 routes = require('./routes/usuarios')(app);
 
 // Conexión
-mongoose.connect('mongodb://localhost/tshirts', function(err, res) {
+mongoose.connect('mongodb://localhost/jobbox', function(err, res) {
+// mongoose.connect('mongodb://desarrolloupe.sytes.net/jobbox', function(err, res) {
 	if(err) {
 		console.log('ERROR: connecting to Database. ' + err);
 	} else {
