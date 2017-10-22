@@ -54,6 +54,7 @@ app.get('/', function(req, res) {
 
 
 // El servidor escucha en el puerto 3000
-server.listen(3000, function() {
-  console.log("Node server running on http://localhost:3000");
+// server.listen(3000, function() {
+server.listen(5600, function() {
+  console.log("Node server running on http://localhost:5600");
 });
