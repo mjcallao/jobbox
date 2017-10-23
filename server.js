@@ -12,7 +12,7 @@ var express = require("express"),
 
 var fs = require('fs');
 var https = require('https');
-const PORT = 3000;
+const PORT = 5600;
 
 require('./lib/db')(app);
 
