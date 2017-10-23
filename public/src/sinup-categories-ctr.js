@@ -12,7 +12,7 @@ angular.module("main").controller("singUpCartegoriesCtrl",["$scope","$location",
     }
 
    $scope.addCategories =function(value){
-
+        
         if(document.getElementById(value).checked){//agrega
             // $scope.animation =true;
             $scope.userRegistrationapp.categories.push(value);
