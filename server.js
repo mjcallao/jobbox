@@ -13,6 +13,7 @@ var express = require("express"),
 var fs = require('fs');
 var https = require('https');
 const PORT = 5600;
+const IPACEPT = "0.0.0.0";
 
 require('./lib/db')(app);
 
@@ -69,7 +70,7 @@ fs.readdirSync(routePath).forEach(function (file) {
 https.createServer({
     key: fs.readFileSync('./certs/jobbox.key'),
     cert: fs.readFileSync('./certs/jobbox.crt')
-}, app).listen(PORT, function(){
+}, app).listen(PORT, IPACEPT, function(){
     console.log("My https server listening on port " + PORT + "...");
 });
 
