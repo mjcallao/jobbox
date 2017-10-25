@@ -1,15 +1,26 @@
 var mongoose = require('mongoose');
-var Schema   = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-var usuarioSchema = new Schema({  
-  name:    { type: String },
-  lastname:    { type: String },
-  genre:    { type: String, enum: ['male', 'female'] },
-  email:   { type: String }
-  // password: { type: String }
-  // stateServices: { type: Boolean },
-  // stateTools: { type: Boolean }
-
+var Images = new Schema({
+    kind: {
+        type: String,
+        enum: ['thumbnail', 'detail'],
+        required: true
+    },
+    url: { type: String, required: true }
 });
 
-module.exports = mongoose.model('Usuario', usuarioSchema);
+var Usuario = new Schema({
+    name:    { type: String },
+  lastname:    { type: String, require: true},
+  genre:    { type: String, enum: ['male', 'female'] },
+  email:   { type: String, require: true}
+});
+
+// Usuario.path('model').validate(function (v) {
+//     return ((v != "") && (v != null));
+// });
+
+module.exports = mongoose.model('Usuario', Usuario);
+
+// .............................................................................
