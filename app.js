@@ -1,46 +1,61 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var methodOverride = require("method-override");
 var app = express();
-var http = require('http');
-var fs = require('fs');
-require('./lib/db')(app);
 
-
-
-app.configure(function () {
-    app.set('port', process.env.PORT || 3000);
-    app.use(express.logger('dev'));
-    app.use(express.bodyParser());
-    app.use(express.methodOverride());
-    app.use(app.router);
+// Connection to DB
+mongoose.connect('mongodb://piamond.sytes.net/jobbox', function(err, res) {
+// mongoose.connect('mongodb://localhost/clients', function(err, res) {
+ if(err) throw err;
+ console.log('Connected to Database');
 });
 
-app.configure('development', function () {
-    app.use(express.errorHandler());
+// Middlewares
+app.use(bodyParser.urlencoded({ extended: false }));  
+app.use(bodyParser.json());  
+app.use(methodOverride());
+
+// Import Models and Controllers
+// var models     = require('./models/client')(app, mongoose);
+// var ClientCtrl = require('./controllers/clients');
+var modelsUsuario     = require('./models/usuario')(app, mongoose);
+var UsuarioCtrl = require('./controllers/usuarios');
+
+var router = express.Router();
+
+// Index - Route
+router.get('/', function(req, res) {  
+   res.send("Hola Mundo - www.programacion.com.py");
 });
 
-// bootstrap our routes
-var routePath = __dirname + '/routes/';
-fs.readdirSync(routePath).forEach(function (file) {
-    require(routePath + file)(app);
+app.use(router);
+
+// API routes
+var api = express.Router();
+
+// api.route('/clients')  
+//   .get(ClientCtrl.findAll)
+//   .post(ClientCtrl.add);
+
+// api.route('/clients/:id')  
+//   .get(ClientCtrl.findById)
+//   .put(ClientCtrl.update)
+//   .delete(ClientCtrl.delete);
+
+api.route('/usuarios')  
+  .get(UsuarioCtrl.findAll)
+  .post(UsuarioCtrl.add);
+
+api.route('/usuarios/:id')  
+  .get(UsuarioCtrl.findById)
+  .put(UsuarioCtrl.update)
+  .delete(UsuarioCtrl.delete);
+
+app.use('/api', api);  
+
+
+// Start server
+app.listen(3000, function() {
+  console.log("Node server running on http://localhost:3000");
 });
-
-
-
-var https = require('https');
- 
-var options = {
-  key: fs.readFileSync('./certs/jobbox.key'),
-  cert: fs.readFileSync('./certs/jobbox.crt')
-};
- 
-https.createServer(options, function (req, res) {
-  res.writeHead(200);
-  res.end("¡Responidiendo por SSL!\n");
-}).listen(app.get('port'), function () {
-console.log("https://localhost:" + app.get('port'));
-});
-
-
-// http.createServer(app).listen(app.get('port'), function () {
-//     console.log("http://localhost:" + app.get('port'));
-// });
