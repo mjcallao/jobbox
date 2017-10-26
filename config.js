@@ -1,21 +1,6 @@
-module.exports = {
-  "db": process.env.MONGODB || process.env.MONGOLAB_URI || "mongodb://localhost:27017",
-  "server": {
-    "port": process.env.PORT || 5600,
-    "address": "0.0.0.0"
-  },
-  "accessControl": {
-    "allowOrigin": "*",
-    "allowMethods": "GET,POST,PUT,DELETE,HEAD,OPTIONS",
-    "allowCredentials": false
-  },
-  "mongoOptions": {
-    "serverOptions": {},
-    "dbOptions": {
-      "w": 1
+{
+    "port" : 3069,
+    "mongoose": {
+        "uri": "mongodb://localhost/tshirts"
     }
-  },
-  "humanReadableOutput": true,
-  "collectionOutputType": "json",
-  "urlPrefix": ""
 }

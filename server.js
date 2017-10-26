@@ -1,191 +1,58 @@
-/* 
-    server.js
-    mongodb-rest
+// Incluímos las dependencias que vamos a usar,
+// importamos Express
+// con http creamos el servidor que posteriormente escuchará en el puerto 3000
+var express = require("express"),
+    app     = express(),
+    http    = require("http"),
+    server  = http.createServer(app),
+    path    = require('path'),
+    log     = require('./libs/log')(module),
+    config  = require('./libs/config');
+    mongoose = require("mongoose");
 
-    Maintained by Ashley Davis 2014-07-02
-    Created by Tom de Grunt on 2010-10-03.
-    Copyright (c) 2010 Tom de Grunt.
-		This file is part of mongodb-rest.
-*/ 
+// Configuramos la app para que pueda realizar métodos REST
+// con bodyParser() permitimos que pueda parsear JSON
+// con methodOverride() nos permite implementar y personalizar métodos HTTP
+// app.router nos permite crear rutas personalizadas
+app.configure(function () {
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+});
 
-var fs = require("fs");
-var path = require("path");
-var express = require('express');
-var https = require('https');
-var extend = require("extend");
+app.use(function(req, res, next){
+    res.status(404);
+    log.debug('Not found URL: %s',req.url);
+    res.send({ error: 'Not found' });
+    return;
+});
 
-//
-// Default logger to use, if none is passed in.
-//
-var defaultLogger = {
-  verbose: function (msg) {
-//    console.log(msg);
-  },
+app.use(function(err, req, res, next){
+    res.status(err.status || 500);
+    log.error('Internal error(%d): %s',res.statusCode,err.message);
+    res.send({ error: err.message });
+    return;
+});
 
-  info: function (msg) {
-    console.log(msg);
-  },
+routes = require('./routes/tshirts')(app);
+routes = require('./routes/usuarios')(app);
 
-  warn: function (msg) {
-    console.log(msg);
-  },
+// Conexión
+mongoose.connect('mongodb://localhost/tshirts', function(err, res) {
+	if(err) {
+		console.log('ERROR: connecting to Database. ' + err);
+	} else {
+		console.log('Connected to Database');
+	}
+});
 
-  error: function (msg) {
-    console.log(msg);
-  },
-};
-		
-var defaultConfig = {
-    db: 'mongodb://localhost:27017',
-    server: {
-        port: 3000,
-        address: "0.0.0.0"
-    },
-    accessControl: {
-        allowOrigin: "*",
-        allowMethods: "GET,POST,PUT,DELETE,HEAD,OPTIONS",
-        allowCredentials: false
-    },  
-    mongoOptions: {
-        serverOptions: {
-        },
-        dbOptions: {
-            w: 1
-        }
-    },
-    humanReadableOutput: true,
-    collectionOutputType: "json",
-    urlPrefix: "",
-    logger: defaultLogger,
-    ssl: {
-	enabled: false,
-        options: {}
-    }
-};
+// petición GET del root que sólo muestre "Hello world!"
+app.get('/', function(req, res) {
+  res.send("Hello world!");
+});
 
-var server;
 
-module.exports = {
-
-  //
-  // Start the REST API server.
-  //
-  startServer: function (config, started) {
-
-    var logger = (config && config.logger) || defaultLogger;
-    var curDir = process.cwd();
-
-    logger.verbose("Current directory: " + curDir);
-
-    if (!config) {
-      var configFilePath = path.join(curDir, "config.js");
-      if (fs.existsSync(configFilePath)) {
-        logger.verbose("Loading configuration from: " + configFilePath);
-        config = require(configFilePath);
-        config.logger = defaultLogger;
-      }
-      else {
-        logger.verbose("Using default configuration.");
-        logger.verbose("Please put config.js in current directory to customize configuration.");
-        config = defaultConfig;
-      }
-    }
-    else {
-      if (!config.logger) {
-        config.logger = defaultLogger;
-      }
-    }
-
-    var app = express();
-    require('express-csv');
-
-    app.use(require('body-parser')());
-
-    if (config.humanReadableOutput) {
-      app.set('json spaces', 4);
-    }
-
-    if (config.accessControl) {
-      var accesscontrol = require('./lib/accesscontrol')(config);
-      app.use(accesscontrol.handle);
-    } 
-
-    app.get('/favicon.ico', function (req, res) {
-      res.status(404);
-    });
-
-    if (!config.db) {
-      config.db = "mongodb://localhost:27017";
-    }
-
-    require('./lib/rest')(app, config);
-
-    logger.verbose('Input Configuration:');
-    logger.verbose(config);  
-
-    // Make a copy of the config so that defaults can be applied.
-    config = extend(true, {}, config);
-    if (!config.server) {
-      config.server = {};
-    }
-
-    if (!config.server.address) {
-      config.server.address = "0.0.0.0";
-    }
-    
-    if (!config.server.port) {
-      config.server.port = 3000;
-    }
-
-    logger.verbose('Configuration with defaults applied:');
-    logger.verbose(config);  
-
-    var host = config.server.address;
-    var port = config.server.port;
-    var ssl = config.ssl || {enabled: false, options: {}};
-
-    logger.verbose('Starting mongodb-rest server: ' + host + ":" + port); 
-    logger.verbose('Connecting to db ' + JSON.stringify(config.db, null, 4));
-
-    var start = function() {
-        logger.verbose('Now listening on: ' + host + ":" + port + ' SSL:' + ssl.enabled);
-        if (started) {
-          started();
-        }
-    };
-
-    if (ssl.enabled) {
-      if (ssl.keyFile) {
-        ssl.options.key = fs.readFileSync(ssl.keyFile);
-      }
-      if (ssl.certificate) {
-        ssl.options.cert = fs.readFileSync(ssl.certificate);
-      }
-      server = https.createServer(ssl.options, app).listen(port, host, start);
-    } else {
-      server = app.listen(port, host, start);
-    }
-
-  },
-
-  //
-  // Stop the REST API server.
-  //
-  stopServer: function () {
-    if (server) {
-      server.close();
-      server = null;
-    }
-  },
-
-};
-
-if (process.argv.length >= 2) { 
-  if (process.argv[1].indexOf('server.js') != -1) {
-
-    //
-    // Auto start server when run as 'node server.js'
-    //
-    module.exports.startServer();
-  }
-}
+// El servidor escucha en el puerto 3000
+server.listen(3000, function() {
+  console.log("Node server running on http://localhost:3000");
+});
