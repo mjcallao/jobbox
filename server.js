@@ -47,17 +47,17 @@ mongoose.connect('mongodb://localhost/tshirts', function(err, res) {
 });
 
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  if (req.method === 'Options') {
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, DELETE');
-    return res.status(200).json({});
-  }
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header(
+//     'Access-Control-Allow-Headers',
+//     'Origin, X-Requested-With, Content-Type, Accept'
+//   );
+//   if (req.method === 'Options') {
+//     res.header('Access-Control-Allow-Methods', 'PUT, POST, DELETE');
+//     return res.status(200).json({});
+//   }
+// });
 
 
 // petición GET del root que sólo muestre "Hello world!"
@@ -67,6 +67,21 @@ app.get('/', function(req, res) {
 
 
 // El servidor escucha en el puerto 3000
+// var http = require('http')
+var httpHeaders = require('http-headers')
+
+
 server.listen(3000, function() {
+  console.log(httpHeaders())
   console.log("Node server running on http://localhost:3000");
 });
+
+
+// var http = require('http')
+// var httpHeaders = require('http-headers')
+ 
+// http.createServer(function (req, res) {
+//   res.end('Hello World')
+//   console.log(httpHeaders(res))
+// }).listen(8080)
+
