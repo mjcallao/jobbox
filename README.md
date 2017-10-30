@@ -1,42 +1,24 @@
-node-api-rest
-=============
+# Creating a Simple RESTful Web App with Node.js, Express, and MongoDB
 
-RESTful API for CRUD with Node.js, Express, MongoDB and mongoose.js
+A complete sample project for Front-End developers teaching the basics of REST and using them to build an easy, fast, single-page web app.
 
-You need install node.js and MongoDB.
+## Quickstart
 
-You can read http://speakinbytes.com/2014/03/api-rest-con-node-js-express-mongodb-y-moongose-js/
+[Visit the tutorial online](http://cwbuecheler.com/web/tutorials/2014/restful-web-app-node-express-mongodb/), follow along with it, write your own code, compare it to this working sample code.
 
-To run
-
-* $ npm install
-* start mongo server
-* $ server.js
-
-<h3> Tecnologías 
-<p>
-
-* Node.js RESTful API with express. Uso de domain y cluster.
-* MongoDB and mongoose
-* Redis
+**Note: If you want to run this sample code, you will need to do an NPM Install, as the node_modules directory has been removed from the repo.**
 
 
-<h2> El proyecto. Temática: Tienda de camisetas
+## Author
 
-<h3>Fase 1: 
-<p>
-* Crear una API RESTful que responda a los casos CRUD.
-* La base de datos utilizadas será MongoDB.
-      
-<h4> Rutas:
-<p>
-* GET /tshirts - muestra una lista con todas las camisetas
-* GET /tshirt/:id - muestra los detalles de una camiseta
-* POST /tshirt - crea una camiseta
-* -- body: model (obligatorio), colour, price, summary, images, size, style (sólo permite: Casual, Alternative, Vintage)
-* PUT /tshirt/:id - modifica una camiseta
-* -- body: model (obligatorio), colour, price, summary, images, size, style (sólo permite: Casual, Alternative, Vintage)
-* DELETE /tshirt/:id - elimina una camiseta
-    
-<h4> Importante: Arrancar mongoDB en un terminal.
+Christopher Buecheler is a front-end developer for a small San Francisco startup. Previously he's worked for companies like GameSpy, OkCupid, Crispy Gamer, and Comcast. You can visit him at [his website](http://cwbuecheler.com).
 
+
+## Contents
+
+* /public - static directories suchs as /images
+* /routes - route files for tutorial project
+* /views - views for tutorial project
+* README.md - this file
+* app.js - central app file for tutorial project
+* package.json - package info for tutorial project
