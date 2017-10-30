@@ -46,6 +46,20 @@ mongoose.connect('mongodb://localhost/tshirts', function(err, res) {
 	}
 });
 
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  if (req.method === 'Options') {
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, DELETE');
+    return res.status(200).json({});
+  }
+});
+
+
 // petición GET del root que sólo muestre "Hello world!"
 app.get('/', function(req, res) {
   res.send("Hello world!");
