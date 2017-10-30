@@ -1,9 +1,11 @@
 // Incluímos las dependencias que vamos a usar,
 // importamos Express
 // con http creamos el servidor que posteriormente escuchará en el puerto 3000
+// var httpHeaders = require('http-headers')
 var express = require("express"),
     app     = express(),
     http    = require("http"),
+    httpHeaders = require('http-headers'),
     server  = http.createServer(app),
     path    = require('path'),
     log     = require('./libs/log')(module),
@@ -68,11 +70,10 @@ app.get('/', function(req, res) {
 
 // El servidor escucha en el puerto 3000
 // var http = require('http')
-var httpHeaders = require('http-headers')
 
 
 server.listen(3000, function() {
-  console.log(httpHeaders())
+  //console.log(httpHeaders())
   console.log("Node server running on http://localhost:3000");
 });
 
