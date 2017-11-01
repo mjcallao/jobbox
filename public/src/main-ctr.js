@@ -192,6 +192,7 @@ angular.module("main").controller("mainCtrl",["$http", "$scope","$rootScope","$l
        $scope.showPage = id;
        jobBox.closePanel();
     }
+
     $scope.gotoProfileUser = function(user){
        $rootScope.userSearch= user;
        $location.path( "/profile" );

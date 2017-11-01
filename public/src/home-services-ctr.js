@@ -12,7 +12,7 @@ angular.module('main').controller("homeCtrl",[ "$scope","$rootScope","$location"
     // jobBox.smartSelectAddOption('.smart-select select', '<option value="apple">Apple</option>');
     
     $scope.gotoProfileUser = function(user){
-       $rootScope.userSearch= user;
+       $rootScope.userSearch = user;
        $location.path( "/profile" );
     }
     $scope.user = [
