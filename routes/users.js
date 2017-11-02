@@ -12,6 +12,15 @@ router.get('/userlist', function(req, res) {
     });
 });
 
+router.get('/user/:id', function(req, res) {
+    var db = req.db;
+    var usuarioBuscar = req.params.id;
+    var collection = db.get('userlist');
+    collection.find({'_id': usuarioBuscar },{},function(e,docs){
+        res.json(docs);
+    });
+});
+
 /*
  * POST to adduser.
  */
