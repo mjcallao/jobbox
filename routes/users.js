@@ -12,7 +12,7 @@ router.get('/userlist', function(req, res) {
     });
 });
 
-router.get('/user/:id', function(req, res) {
+router.get('/finduser/:id', function(req, res) {
     var db = req.db;
     var usuarioBuscar = req.params.id;
     var collection = db.get('userlist');
