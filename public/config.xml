@@ -12,7 +12,7 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="SplashScreenDelay" value="0"/>
 
-<!--     <platform name="android">
+<platform name="android">
 <splash density="land-ldpi" src="www/res/screen/android/drawable-land-ldpi-screen.png" />
 <splash density="land-mdpi" src="www/res/screen/android/drawable-land-mdpi-screen.png" />
 <splash density="land-hdpi" src="www/res/screen/android/drawable-land-hdpi-screen.png" />
@@ -25,7 +25,7 @@
 <splash density="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi-screen.png" />
 <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
 <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
-</platform> -->
+</platform>
 
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -71,6 +71,10 @@
     <plugin name="cordova-plugin-statusbar" spec="~2.1.2" />
     <plugin name="cordova-plugin-vibration" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" spec="~1.2.1" />
+
+    <!-- Agregado plugin para cortar la imagen -->
+    <plugin name="cordova-plugin-k-imagecropper" spec="~1.1.7" />
+    
 
     
 
