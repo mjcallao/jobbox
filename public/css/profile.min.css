@@ -38,7 +38,7 @@
 }
 
 .imagenPerfil{
-	height: 140px;
+	height: 80px;
 	margin-top: 10px;
 	border-style: solid;
 	border-color: #7DE8D6;
@@ -55,6 +55,7 @@
 .botonCambiarFoto{
 	font-family: Raleway;
 	font-weight: bold;
+	font-size: 14px;
 	background-color: #7DE8D6;
 	border-style: solid;
 	border-radius: 6px;
