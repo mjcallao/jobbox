@@ -40,6 +40,10 @@
 .imagenPerfil{
 	height: 140px;
 	margin-top: 10px;
+	border-style: solid;
+	border-color: #7DE8D6;
+	border-radius: 2px;
+
 }
 
 .divBotonCambiarFoto{
@@ -54,5 +58,7 @@
 	background-color: #7DE8D6;
 	border-style: solid;
 	border-radius: 6px;
-	border-color: #64A39A;
+	border-color: #2A586C;
+	border-width: 1px;
+	color: #2A586C;
 }
