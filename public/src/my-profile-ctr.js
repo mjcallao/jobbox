@@ -9,7 +9,11 @@ angular.module('main').controller("myProfileCtrl",[ "$scope", function($scope){
 	    	navigator.camera.getPicture(function(url)
 	    	{
 
+	    		/*ME QUEDE TESTEANDO SI FUNCIONABA EL NUEVO CROPEADOR DE IMAGEN*/
+
 	    		console.log(url);
+
+	    		var imageUrl = url;
 
 	            var options = 
 		    	{
