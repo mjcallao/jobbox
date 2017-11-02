@@ -10,7 +10,7 @@ angular.module('main').controller("myProfileCtrl",[ "$scope", function($scope){
 
 	    		console.log(url);
 
-	            cortarImagen(imageUrl);
+	            cortarImagen(url);
 
 	          }, function() {
 	          	console.log("error");
