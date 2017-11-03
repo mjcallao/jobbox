@@ -14,12 +14,26 @@ router.get('/userlist', function(req, res) {
 
 router.get('/finduser/:id', function(req, res) {
     var db = req.db;
-    var usuarioBuscar = req.params.id;
+    // var usuarioBuscar = req.params.id;
     var collection = db.get('userlist');
-    collection.find({'_id' : usuarioBuscar },{}, function(e,docs){
+    // collection.find({'_id' : usuarioBuscar },{}, function(e,docs){
+    collection.findOne({'_id' : req.params.id },{}, function(e,docs){
         res.json(docs);
     });
 });
+
+
+// router.get('/:userID/food/edit/:foodID', function(req, res){
+//  //sample GET request at '/xavg234/food/edit/jb3552'
+
+//  var userToFind = req.params.userID;//gets xavg234
+//  var foodToSearch = req.params.foodID;//gets jb3552
+//  User.findOne({'userid':userToFind}) //dummy code
+//      .then(function(user){...})
+//      .catch(function(err){console.log(err)});
+// });
+
+
 
 /*
  * POST to adduser.

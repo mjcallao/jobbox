@@ -92,6 +92,8 @@ function addUser(event) {
             'gender': $('#addUser fieldset input#inputUserGender').val()
         }
 
+        console.log(newUser);
+
         // Use AJAX to post the object to our adduser service
         $.ajax({
             type: 'POST',
